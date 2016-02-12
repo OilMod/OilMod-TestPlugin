@@ -13,12 +13,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class TestPlugin extends JavaPlugin {
     private ItemRegister itemRegister;
     private TestItem testItem;
+    private BackpackItem backpackItem;
 
     @Override
     public void onEnable() {
         itemRegister = new ItemRegister("oiltst");
         itemRegister.init();
         itemRegister.register(testItem = new TestItem());
+        itemRegister.register(backpackItem = new BackpackItem());
     }
 
     @Override
@@ -31,6 +33,10 @@ public class TestPlugin extends JavaPlugin {
                         ItemStack item = testItem.createItemStack(player, 1);
                         player.getInventory().addItem(item);
                     }
+                }
+                if (args[0].equalsIgnoreCase("backpack")) {
+                    ItemStack item = backpackItem.createItemStack(player, 1);
+                    player.getInventory().addItem(item);
                 }
             }
         }
