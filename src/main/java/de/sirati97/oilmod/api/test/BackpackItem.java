@@ -10,7 +10,7 @@ import org.bukkit.Material;
  */
 public class BackpackItem extends OilItemBase {
     public BackpackItem() {
-        super(Material.STICK, 0, 2, 1, "Backpack");
+        super(Material.LEATHER, 0, 2, 1, "Backpack");
     }
 
     @Override
