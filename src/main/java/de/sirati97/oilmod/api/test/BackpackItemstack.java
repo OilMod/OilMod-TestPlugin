@@ -12,7 +12,7 @@ import org.bukkit.event.block.Action;
  * Created by sirati97 on 12.02.2016.
  */
 public class BackpackItemstack extends OilItemStack {
-    ModInventoryObject inventory = InventoryFactoryBase.getInstance().createBasicInventory("inv", this, 9, "Backpack", true);
+    ModInventoryObject inventory = InventoryFactoryBase.getInstance().createBasicInventory("inv", this, 9, "Backpack", BackpackInventoryFilter.INSTANCE, true);
 
     public BackpackItemstack(NMSItemStack nmsItemStack, OilItemBase item) {
         super(nmsItemStack, item);
