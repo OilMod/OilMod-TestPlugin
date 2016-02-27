@@ -14,7 +14,7 @@ public class PortableInventoryFilter implements ItemFilter {
     public boolean allowed(ItemStack itemStack) {
         if (itemStack instanceof OilBukkitItemStack) {
             OilItemStack oilItemStack = ((OilBukkitItemStack) itemStack).getOilItemStack();
-            return !(oilItemStack instanceof BackpackItemstack || oilItemStack instanceof  FurnacePowderItemstack);
+            return !(oilItemStack instanceof BackpackItemstack || oilItemStack instanceof  FurnacePowderItemstack || oilItemStack instanceof  CraftingBackpackItemstack);
         }
         return true;
     }
