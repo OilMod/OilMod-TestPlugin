@@ -1,6 +1,7 @@
 package de.sirati97.oilmod.api.test;
 
-import de.sirati97.oilmod.api.items.ItemRegister;
+import de.sirati97.oilmod.api.items.ItemRegistry;
+import de.sirati97.oilmod.api.util.WeakReferenceTicker;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -11,16 +12,24 @@ import org.bukkit.plugin.java.JavaPlugin;
  * Created by sirati97 on 16.01.2016.
  */
 public class TestPlugin extends JavaPlugin {
-    private ItemRegister itemRegister;
+    private ItemRegistry itemRegistry;
     private TestItem testItem;
     private BackpackItem backpackItem;
-
+    private FurnacePowderItem furnacePowderItem;
+    private CraftingBackpackItem craftingBackpackItem;
+    private WeakReferenceTicker ticker;
+    private static TestPlugin instance;
+    
     @Override
     public void onEnable() {
-        itemRegister = new ItemRegister("oiltst");
-        itemRegister.init();
-        itemRegister.register(testItem = new TestItem());
-        itemRegister.register(backpackItem = new BackpackItem());
+        instance = this;
+        ticker = new WeakReferenceTicker(this, 1, 20);
+        itemRegistry = new ItemRegistry("oiltst");
+        itemRegistry.init();
+        itemRegistry.register(testItem = new TestItem());
+        itemRegistry.register(backpackItem = new BackpackItem());
+        itemRegistry.register(furnacePowderItem = new FurnacePowderItem());
+        itemRegistry.register(craftingBackpackItem = new CraftingBackpackItem());
     }
 
     @Override
@@ -33,13 +42,28 @@ public class TestPlugin extends JavaPlugin {
                         ItemStack item = testItem.createItemStack(player, 1);
                         player.getInventory().addItem(item);
                     }
-                }
-                if (args[0].equalsIgnoreCase("backpack")) {
+                } else if (args[0].equalsIgnoreCase("backpack")) {
                     ItemStack item = backpackItem.createItemStack(player, 1);
                     player.getInventory().addItem(item);
+                } else if (args[0].equalsIgnoreCase("oven")) {
+                    ItemStack item = furnacePowderItem.createItemStack(player, 1);
+                    player.getInventory().addItem(item);
+                } else if (args[0].equalsIgnoreCase("craft")) {
+                    ItemStack item = craftingBackpackItem.createItemStack(player, 1);
+                    player.getInventory().addItem(item);
+                } else if (args[0].equalsIgnoreCase("gc")) {
+                    System.gc();
                 }
             }
         }
         return true;
+    }
+
+    public WeakReferenceTicker getTicker() {
+        return ticker;
+    }
+
+    public static TestPlugin getInstance() {
+        return instance;
     }
 }

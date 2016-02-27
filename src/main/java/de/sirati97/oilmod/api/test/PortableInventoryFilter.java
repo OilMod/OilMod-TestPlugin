@@ -8,13 +8,13 @@ import org.bukkit.inventory.ItemStack;
 /**
  * Created by sirati97 on 13.02.2016.
  */
-public class BackpackInventoryFilter implements ItemFilter {
-    public final static BackpackInventoryFilter INSTANCE = new BackpackInventoryFilter();
+public class PortableInventoryFilter implements ItemFilter {
+    public final static PortableInventoryFilter INSTANCE = new PortableInventoryFilter();
     @Override
     public boolean allowed(ItemStack itemStack) {
         if (itemStack instanceof OilBukkitItemStack) {
             OilItemStack oilItemStack = ((OilBukkitItemStack) itemStack).getOilItemStack();
-            return !(oilItemStack instanceof BackpackItemstack);
+            return !(oilItemStack instanceof BackpackItemstack || oilItemStack instanceof  FurnacePowderItemstack);
         }
         return true;
     }
