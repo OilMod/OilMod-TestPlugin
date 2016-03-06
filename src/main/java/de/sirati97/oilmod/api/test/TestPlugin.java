@@ -25,7 +25,6 @@ public class TestPlugin extends JavaPlugin {
         instance = this;
         ticker = new WeakReferenceTicker(this, 1, 20);
         itemRegistry = new ItemRegistry("oiltst");
-        itemRegistry.init();
         itemRegistry.register(testItem = new TestItem());
         itemRegistry.register(backpackItem = new BackpackItem());
         itemRegistry.register(furnacePowderItem = new FurnacePowderItem());
