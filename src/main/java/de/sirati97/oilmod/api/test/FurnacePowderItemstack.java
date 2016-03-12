@@ -11,10 +11,10 @@ import org.bukkit.event.block.Action;
 /**
  * Created by sirati97 on 12.02.2016.
  */
-public class FurnacePowderItemstack extends OilItemStack {
+public class FurnacePowderItemStack extends OilItemStack {
     ModFurnaceInventoryObject inventory = InventoryFactoryBase.getInstance().createFurnaceInventory("inv", this, "Furnace Powder", TestPlugin.getInstance().getTicker(), PortableInventoryFilter.INSTANCE, true);
 
-    public FurnacePowderItemstack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public FurnacePowderItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
         super(nmsItemStack, item);
     }
 

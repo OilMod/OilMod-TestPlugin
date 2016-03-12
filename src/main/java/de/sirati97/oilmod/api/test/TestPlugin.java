@@ -8,10 +8,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Random;
+
 /**
  * Created by sirati97 on 16.01.2016.
  */
 public class TestPlugin extends JavaPlugin {
+    public static final Random rnd = new Random();
     private ItemRegistry itemRegistry;
     private TestItem testItem;
     private BackpackItem backpackItem;
@@ -29,6 +32,9 @@ public class TestPlugin extends JavaPlugin {
         itemRegistry.register(backpackItem = new BackpackItem());
         itemRegistry.register(furnacePowderItem = new FurnacePowderItem());
         itemRegistry.register(craftingBackpackItem = new CraftingBackpackItem());
+        itemRegistry.register(new ReplaceWandItem());
+        itemRegistry.register(new ArrowWandItem());
+        itemRegistry.register(new VisBottleItem());
     }
 
     @Override
