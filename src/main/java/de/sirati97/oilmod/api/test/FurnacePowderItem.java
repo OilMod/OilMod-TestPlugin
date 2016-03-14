@@ -14,7 +14,7 @@ public class FurnacePowderItem extends OilItemBase {
     }
 
     @Override
-    public OilItemStack createOilStack(NMSItemStack nmsItemStack) {
+    public OilItemStack createOilItemStackInstance(NMSItemStack nmsItemStack) {
         return new FurnacePowderItemStack(nmsItemStack, this);
     }
 }

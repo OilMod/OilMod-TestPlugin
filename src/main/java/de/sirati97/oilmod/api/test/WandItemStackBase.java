@@ -3,6 +3,7 @@ package de.sirati97.oilmod.api.test;
 import de.sirati97.oilmod.api.data.IntegerData;
 import de.sirati97.oilmod.api.inventory.InventoryFactoryBase;
 import de.sirati97.oilmod.api.inventory.ModInventoryObject;
+import de.sirati97.oilmod.api.items.ItemDescription;
 import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilBukkitItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;
@@ -11,6 +12,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by sirati97 on 11.03.2016.
@@ -72,6 +76,17 @@ public class WandItemStackBase extends OilItemStack implements VisHolder{
     }
 
     public void setVis(int vis) {
+        ItemDescription description = getItemDescription();
+        description.setLine(0, getVisStoredDescriptionLine(vis), true);
         this.vis.setData(vis);
+    }
+
+    protected String getVisStoredDescriptionLine(int vis) {
+        return "Stores " + vis + " Vis.";
+    }
+
+    @Override
+    protected List<String> createDescription() {
+        return Arrays.asList(getVisStoredDescriptionLine(vis.getData()));
     }
 }

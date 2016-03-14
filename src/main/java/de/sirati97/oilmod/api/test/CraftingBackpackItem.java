@@ -14,7 +14,7 @@ public class CraftingBackpackItem extends OilItemBase {
     }
 
     @Override
-    public OilItemStack createOilStack(NMSItemStack nmsItemStack) {
+    public OilItemStack createOilItemStackInstance(NMSItemStack nmsItemStack) {
         return new CraftingBackpackItemStack(nmsItemStack, this);
     }
 }

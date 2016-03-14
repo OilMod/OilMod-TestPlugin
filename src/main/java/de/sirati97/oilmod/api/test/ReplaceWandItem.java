@@ -21,7 +21,7 @@ public class ReplaceWandItem extends OilItemBase {
     }
 
     @Override
-    public OilItemStack createOilStack(NMSItemStack nmsItemStack) {
+    public OilItemStack createOilItemStackInstance(NMSItemStack nmsItemStack) {
         return new ReplaceWandItemStack(nmsItemStack, this);
     }
 

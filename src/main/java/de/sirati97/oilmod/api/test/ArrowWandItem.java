@@ -15,7 +15,7 @@ public class ArrowWandItem extends OilItemBase {
     }
 
     @Override
-    public OilItemStack createOilStack(NMSItemStack nmsItemStack) {
+    public OilItemStack createOilItemStackInstance(NMSItemStack nmsItemStack) {
         return new ArrowWandItemStack(nmsItemStack, this);
     }
 

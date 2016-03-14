@@ -21,12 +21,18 @@ public class VisBottleItem  extends OilItemBase{
     }
 
     @Override
-    public VisBottleItemStack createOilStack(NMSItemStack nmsItemStack) {
+    public VisBottleItemStack createOilItemStackInstance(NMSItemStack nmsItemStack) {
         return new VisBottleItemStack(nmsItemStack, this);
     }
 
     @Override
     public boolean onUse(OilItemStack itemStack, Player player, Action action) {
+        player.sendMessage(itemStack.getNmsItemStack().asBukkitItemStack().getItemMeta().getLore().size()+"");
+        return true;
+    }
+
+    @Override
+    public boolean onLeftClick(OilItemStack itemStack, Player player, Action action) {
         return true;
     }
 
