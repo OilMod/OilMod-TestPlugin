@@ -1,6 +1,7 @@
 package de.sirati97.oilmod.api.test;
 
 import de.sirati97.oilmod.api.items.ItemRegistry;
+import de.sirati97.oilmod.api.test.backpack.BackpackItem;
 import de.sirati97.oilmod.api.util.WeakReferenceTicker;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -29,12 +30,13 @@ public class TestPlugin extends JavaPlugin {
         ticker = new WeakReferenceTicker(this, 1, 20);
         itemRegistry = new ItemRegistry("oiltst");
         itemRegistry.register(testItem = new TestItem());
-        itemRegistry.register(backpackItem = new BackpackItem());
+        //itemRegistry.register(backpackItem = new BackpackItem());
         itemRegistry.register(furnacePowderItem = new FurnacePowderItem());
         itemRegistry.register(craftingBackpackItem = new CraftingBackpackItem());
-        itemRegistry.register(new ReplaceWandItem());
-        itemRegistry.register(new ArrowWandItem());
-        itemRegistry.register(new VisBottleItem());
+        itemRegistry.register(new ReplaceWandItem()); //5
+        itemRegistry.register(new VisBottleItem()); //6
+        itemRegistry.register(new ArrowWandItem()); //7
+        BackpackItem.registerBackpacks(itemRegistry, 8); //USES 8 next id is 16
     }
 
     @Override

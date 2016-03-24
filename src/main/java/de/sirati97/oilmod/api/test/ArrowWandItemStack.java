@@ -11,7 +11,7 @@ import org.bukkit.event.block.Action;
 /**
  * Created by sirati97 on 12.03.2016.
  */
-public class ArrowWandItemStack extends WandItemStackBase {
+public class ArrowWandItemStack extends WandItemStackBase<ArrowWandItemStack> {
     protected final LongData lastShot = new LongData("lastShot", this);
 
     public ArrowWandItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
@@ -30,7 +30,7 @@ public class ArrowWandItemStack extends WandItemStackBase {
             int arrowDamage = getEnchantmentLevel(Enchantment.ARROW_DAMAGE);
             int durability = getEnchantmentLevel(Enchantment.DURABILITY);
             int visUsed = (int) ((15+(hasFlame?8:0)+2*arrowKnockback+3*arrowDamage)*(3d/(3d+durability)));
-            if ((lastShot.getData() > System.currentTimeMillis() || lastShot.getData()+(700/Math.sqrt(getEnchantmentLevel(Enchantment.DIG_SPEED))) < System.currentTimeMillis()) && useVis(false, visUsed)){
+            if ((lastShot.getData() > System.currentTimeMillis() || lastShot.getData()+(2000d/Math.cbrt(getEnchantmentLevel(Enchantment.DIG_SPEED)+1)) < System.currentTimeMillis()) && useVis(false, visUsed)){
                 lastShot.setData(System.currentTimeMillis());
 
                 useVis(true, visUsed);
@@ -44,5 +44,10 @@ public class ArrowWandItemStack extends WandItemStackBase {
             }
         }
         return true;
+    }
+
+    @Override
+    protected boolean checkClass(WandItemStackBase itemStack) {
+        return itemStack instanceof ArrowWandItemStack;
     }
 }

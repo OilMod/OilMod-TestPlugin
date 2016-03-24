@@ -8,18 +8,22 @@ import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilBukkitItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.items.OilItemStack;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by sirati97 on 11.03.2016.
  */
-public class WandItemStackBase extends OilItemStack implements VisHolder{
+public abstract class WandItemStackBase<T extends WandItemStackBase> extends OilItemStack implements VisHolder{
     protected final ModInventoryObject visContainer = InventoryFactoryBase.getInstance().createBasicInventory("visCon", this, 5, "Vis Container", VisFilter.INSTANCE);
     protected final IntegerData vis = new IntegerData("visStored", this);
 
@@ -81,6 +85,19 @@ public class WandItemStackBase extends OilItemStack implements VisHolder{
         this.vis.setData(vis);
     }
 
+    @Override
+    public final void combineAnvil(ItemStack itemStack, HumanEntity human) {
+        T other = (T) ((OilBukkitItemStack) itemStack).getOilItemStack();
+        List<ItemStack> drops= combineWith(other);
+        dropAll(drops, human);
+    }
+
+    @Override
+    public void prepareCombineAnvil(ItemStack itemStack, HumanEntity human) {
+        T other = (T) ((OilBukkitItemStack) itemStack).getOilItemStack();
+        setVis(getVis()+other.getVis());
+    }
+
     protected String getVisStoredDescriptionLine(int vis) {
         return "Stores " + vis + " Vis.";
     }
@@ -89,4 +106,33 @@ public class WandItemStackBase extends OilItemStack implements VisHolder{
     protected List<String> createDescription() {
         return Arrays.asList(getVisStoredDescriptionLine(vis.getData()));
     }
+
+    protected List<ItemStack> transferInventory(Inventory into, Inventory from) {
+        List<ItemStack> result = new ArrayList<>();
+        for (ItemStack itemStack:from.getContents()) {
+            if (itemStack != null) {
+                result.addAll(into.addItem(itemStack).values());
+            }
+        }
+        return result;
+    }
+
+    protected List<ItemStack> combineWith(T other) {
+        return new ArrayList<ItemStack>(transferInventory(visContainer.getBukkitInventory(), other.visContainer.getBukkitInventory()));
+    }
+
+    protected void dropAll(List<ItemStack> drops, HumanEntity human) {
+        World w = human.getWorld();
+        Location drop = human.getEyeLocation();
+        for (ItemStack itemStack:drops) {
+            w.dropItem(drop, itemStack);
+        }
+    }
+
+    @Override
+    public final boolean canCombineAnvil(ItemStack itemStack, HumanEntity human) {
+        return itemStack instanceof OilBukkitItemStack && ((OilBukkitItemStack) itemStack).getOilItemStack() instanceof WandItemStackBase && checkClass((WandItemStackBase) ((OilBukkitItemStack) itemStack).getOilItemStack());
+    }
+
+    protected abstract boolean checkClass(WandItemStackBase itemStack);
 }

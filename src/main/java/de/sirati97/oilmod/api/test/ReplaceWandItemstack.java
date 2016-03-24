@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * Created by sirati97 on 11.03.2016.
  */
-public class ReplaceWandItemStack extends WandItemStackBase implements VisHolder{
+public class ReplaceWandItemStack extends WandItemStackBase<ReplaceWandItemStack> implements VisHolder{
     private static final BlockFace[] SITES = new BlockFace[]{BlockFace.DOWN, BlockFace.UP, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST};
     private ModInventoryObject blockContainer = InventoryFactoryBase.getInstance().createBasicInventory("blockCon", this, 18, "Block Container", BlockFilter.INSTANCE, true);
 
@@ -168,5 +168,15 @@ public class ReplaceWandItemStack extends WandItemStackBase implements VisHolder
         return null;
     }
 
+    @Override
+    protected boolean checkClass(WandItemStackBase itemStack) {
+        return itemStack instanceof ReplaceWandItemStack;
+    }
 
+    @Override
+    protected List<ItemStack> combineWith(ReplaceWandItemStack other) {
+        List<ItemStack> drops= super.combineWith(other);
+        drops.addAll(transferInventory(blockContainer.getBukkitInventory(), other.blockContainer.getBukkitInventory()));
+        return drops;
+    }
 }

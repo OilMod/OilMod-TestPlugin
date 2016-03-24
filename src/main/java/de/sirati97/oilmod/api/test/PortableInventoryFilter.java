@@ -3,6 +3,7 @@ package de.sirati97.oilmod.api.test;
 import de.sirati97.oilmod.api.inventory.ItemFilter;
 import de.sirati97.oilmod.api.items.OilBukkitItemStack;
 import de.sirati97.oilmod.api.items.OilItemStack;
+import de.sirati97.oilmod.api.test.backpack.BackpackItemStack;
 import org.bukkit.inventory.ItemStack;
 
 /**

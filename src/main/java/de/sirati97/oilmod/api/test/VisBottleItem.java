@@ -6,6 +6,7 @@ import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.items.OilItemStack;
 import de.sirati97.oilmod.api.items.OilSpecificItemstackFactory;
 import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 /**
  * Created by sirati97 on 11.03.2016.
  */
-public class VisBottleItem  extends OilItemBase{
+public class VisBottleItem  extends OilItemBase<VisBottleItemStack>{
     private final OilSpecificItemstackFactory[] creativeItems = new OilSpecificItemstackFactory[] {new VisBottleItemstackFactory((short)1),new VisBottleItemstackFactory((short)9),new VisBottleItemstackFactory((short)81),new VisBottleItemstackFactory((short)729)};
 
     public VisBottleItem() {
@@ -27,12 +28,6 @@ public class VisBottleItem  extends OilItemBase{
 
     @Override
     public boolean onUse(OilItemStack itemStack, Player player, Action action) {
-        player.sendMessage(itemStack.getNmsItemStack().asBukkitItemStack().getItemMeta().getLore().size()+"");
-        return true;
-    }
-
-    @Override
-    public boolean onLeftClick(OilItemStack itemStack, Player player, Action action) {
         return true;
     }
 
@@ -54,6 +49,19 @@ public class VisBottleItem  extends OilItemBase{
             OilBukkitItemStack oilStack = (OilBukkitItemStack) result;
             ((VisBottleItemStack)oilStack.getOilItemStack()).setVis(vis);
             return result;
+        }
+    }
+
+    @Override
+    public boolean canCombineAnvil(VisBottleItemStack visBottle, ItemStack itemStack, HumanEntity human) {
+        return itemStack instanceof OilBukkitItemStack && ((OilBukkitItemStack) itemStack).getOilItemStack() instanceof TransportableVisHolder;
+    }
+
+    @Override
+    public void prepareCombineAnvil(VisBottleItemStack visBottle, ItemStack itemStack, HumanEntity human) {
+        if (canCombineAnvil(visBottle, itemStack, human)) {
+            TransportableVisHolder visHolder = (TransportableVisHolder) ((OilBukkitItemStack) itemStack).getOilItemStack();
+            visBottle.setVis(visBottle.getVis()+visHolder.getVis());
         }
     }
 }
