@@ -20,12 +20,12 @@ public class TestUIBuilder extends UserInterfaceBuilder {
 
     public void displayNewUI(Player player) {
         //noinspection unchecked
-        displayNewUI(player, null);
+        super.displayNewUI(player, null);
     }
 
     @Override
     protected Interface buildDisplay(Player player, UIArgument argument, InterfaceFactory interfaceFactory) {
-        Interface ui = interfaceFactory.createChestInterace(player, this, 2);
+        Interface ui = interfaceFactory.createChestInterface(player, this, "Test Inventory", 2);
         UIFormedFixedSizePanel panel = new UIFormedFixedSizePanel(9, 2);
         ui.showPanel(null, panel);
         panel.setUIElement(0, 0, new UIElementBase() {
@@ -44,7 +44,6 @@ public class TestUIBuilder extends UserInterfaceBuilder {
                 player.sendMessage("1");
             }
         });
-
         return ui;
     }
 }

@@ -1,11 +1,9 @@
-name: OilMod-Test
+name: 'OilMod-Test'
 version: 0.0.1
-description: OilMod Api Test
+description: 'OilMod Api Test'
 author: sirati97
-authors: ['sirati97']
 main: de.sirati97.oilmod.api.test.TestPlugin
 load: STARTUP
 commands:
     oilmodtest:
-        description: Test command
-        usage: ''
+        description: 'Test command'
