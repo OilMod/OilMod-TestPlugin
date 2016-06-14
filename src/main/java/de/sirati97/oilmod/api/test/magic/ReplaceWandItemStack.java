@@ -1,15 +1,18 @@
-package de.sirati97.oilmod.api.test;
+package de.sirati97.oilmod.api.test.magic;
 
 import de.sirati97.oilmod.api.inventory.InventoryFactoryBase;
 import de.sirati97.oilmod.api.inventory.ModInventoryObject;
 import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;
-import de.sirati97.oilmod.api.util.Util;
+import de.sirati97.oilmod.api.test.BlockFilter;
+import de.sirati97.oilmod.api.test.TestPlugin;
+import de.sirati97.oilmod.api.util.OilUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -69,7 +72,7 @@ public class ReplaceWandItemStack extends WandItemStackBase<ReplaceWandItemStack
                 if (i < calls.size()) {
                     List<ItemStack> drops = new ArrayList<>();
                     boolean success = false;
-                    while (i < calls.size() && !(success|=replaceBlock(calls.get(i++), start, drops, nextCalls))); //Tries until a block was replaced or queue is empty
+                    while (i < calls.size() && !(success|=replaceBlock(player, calls.get(i++), start, drops, nextCalls))); //Tries until a block was replaced or queue is empty
 
                     Inventory inv = player.getInventory();
                     Map<Integer, ItemStack> couldNotAdd = inv.addItem(drops.toArray(new ItemStack[drops.size()]));
@@ -114,12 +117,12 @@ public class ReplaceWandItemStack extends WandItemStackBase<ReplaceWandItemStack
         }
     }
 
-    private boolean replaceBlock(ReplaceBlockArgsTuple args, Location start, List<ItemStack> drops, List<ReplaceBlockArgsTuple> nextCalls) {
-        return replaceBlock(args.type, args.data, args.block, args.from, start, drops, nextCalls);
+    private boolean replaceBlock(Player player, ReplaceBlockArgsTuple args, Location start, List<ItemStack> drops, List<ReplaceBlockArgsTuple> nextCalls) {
+        return replaceBlock(player, args.type, args.data, args.block, args.from, start, drops, nextCalls);
     }
 
 
-    private boolean replaceBlock(Material type, byte data, Block block, BlockFace from, Location start, List<ItemStack> drops, List<ReplaceBlockArgsTuple> nextCalls) {
+    private boolean replaceBlock(Player player, Material type, byte data, Block block, BlockFace from, Location start, List<ItemStack> drops, List<ReplaceBlockArgsTuple> nextCalls) {
         if (!useVis(false, 1)) {
             return false;
         }
@@ -127,9 +130,20 @@ public class ReplaceWandItemStack extends WandItemStackBase<ReplaceWandItemStack
         if (newBlock == null || !type.equals(block.getType()) || (block.getData()) != data) {
             return false;
         }
-        drops.addAll(Arrays.asList(hasEnchantment(Enchantment.SILK_TOUCH)? Util.getDropsSilktouch(block):Util.getDrops(block)));
-        block.setType(newBlock.getType());
-        block.setData((byte)newBlock.getDurability());
+        if (!OilUtil.canBreak(player, block)) {
+            return false;
+        }
+        List<ItemStack> newDrops =Arrays.asList(hasEnchantment(Enchantment.SILK_TOUCH)? OilUtil.getDropsSilktouch(block):OilUtil.getDrops(block));
+        BlockState oldState = block.getState();
+        BlockState newState = block.getState();
+        newState.setType(newBlock.getType());
+        newState.setRawData((byte)newBlock.getDurability());
+        newState.update(true, false);
+        if (!OilUtil.canPlace(player, block, oldState, block.getRelative(from), getNmsItemStack().asBukkitItemStack())) {
+            oldState.update(true, false);
+            return false;
+        }
+        drops.addAll(newDrops);
         useVis(true, (TestPlugin.rnd.nextInt(3+getEnchantmentLevel(Enchantment.DURABILITY))<3)?1:0);
         getNextBlock(true);
         for (BlockFace face:SITES) {

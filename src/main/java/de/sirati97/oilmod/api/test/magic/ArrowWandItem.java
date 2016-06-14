@@ -1,4 +1,4 @@
-package de.sirati97.oilmod.api.test;
+package de.sirati97.oilmod.api.test.magic;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;

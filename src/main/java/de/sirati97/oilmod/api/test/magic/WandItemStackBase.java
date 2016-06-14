@@ -1,4 +1,4 @@
-package de.sirati97.oilmod.api.test;
+package de.sirati97.oilmod.api.test.magic;
 
 import de.sirati97.oilmod.api.data.IntegerData;
 import de.sirati97.oilmod.api.inventory.InventoryFactoryBase;
@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by sirati97 on 11.03.2016.
  */
-public abstract class WandItemStackBase<T extends WandItemStackBase> extends OilItemStack implements VisHolder{
+public abstract class WandItemStackBase<T extends WandItemStackBase<T>> extends OilItemStack implements VisHolder{
     protected final ModInventoryObject visContainer = InventoryFactoryBase.getInstance().createBasicInventory("visCon", this, 5, "Vis Container", VisFilter.INSTANCE);
     protected final IntegerData vis = new IntegerData("visStored", this);
 

@@ -1,4 +1,4 @@
-package de.sirati97.oilmod.api.test;
+package de.sirati97.oilmod.api.test.magic;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilBukkitItemStack;
@@ -18,7 +18,7 @@ public class VisBottleItem  extends OilItemBase<VisBottleItemStack>{
     private final OilSpecificItemstackFactory[] creativeItems = new OilSpecificItemstackFactory[] {new VisBottleItemstackFactory((short)1),new VisBottleItemstackFactory((short)9),new VisBottleItemstackFactory((short)81),new VisBottleItemstackFactory((short)729)};
 
     public VisBottleItem() {
-        super(Material.POTION, 0, 6, 64, "Vis Bottle");
+        super(Material.DRAGONS_BREATH, 0, 6, 64, "Vis Bottle");
     }
 
     @Override

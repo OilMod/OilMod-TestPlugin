@@ -2,11 +2,18 @@ package de.sirati97.oilmod.api.test;
 
 import de.sirati97.oilmod.api.items.ItemRegistry;
 import de.sirati97.oilmod.api.test.backpack.BackpackItem;
+import de.sirati97.oilmod.api.test.magic.ArrowWandItem;
+import de.sirati97.oilmod.api.test.magic.ReplaceWandItem;
+import de.sirati97.oilmod.api.test.magic.VisBottleItem;
+import de.sirati97.oilmod.api.test.ui.TestUIBuilder;
 import de.sirati97.oilmod.api.util.WeakReferenceTicker;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Random;
@@ -23,6 +30,7 @@ public class TestPlugin extends JavaPlugin {
     private CraftingBackpackItem craftingBackpackItem;
     private WeakReferenceTicker ticker;
     private static TestPlugin instance;
+    private TestUIBuilder testUIBuilder = new TestUIBuilder();
     
     @Override
     public void onEnable() {
@@ -37,6 +45,7 @@ public class TestPlugin extends JavaPlugin {
         itemRegistry.register(new VisBottleItem()); //6
         itemRegistry.register(new ArrowWandItem()); //7
         BackpackItem.registerBackpacks(itemRegistry, 8); //USES 8 next id is 16
+        Bukkit.addRecipe(new ShapelessRecipe(new ItemStack(Material.WOOD)).addIngredient(2, Material.STICK));
     }
 
     @Override
@@ -58,6 +67,8 @@ public class TestPlugin extends JavaPlugin {
                 } else if (args[0].equalsIgnoreCase("craft")) {
                     ItemStack item = craftingBackpackItem.createItemStack(player, 1);
                     player.getInventory().addItem(item);
+                } else if (args[0].equalsIgnoreCase("ui")) {
+                    testUIBuilder.displayNewUI(player);
                 } else if (args[0].equalsIgnoreCase("gc")) {
                     System.gc();
                 }
