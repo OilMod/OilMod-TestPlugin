@@ -25,7 +25,7 @@ public class TestUIBuilder extends UserInterfaceBuilder {
 
     @Override
     protected Interface buildDisplay(Player player, UIArgument argument, InterfaceFactory interfaceFactory) {
-        Interface ui = interfaceFactory.createChestInterface(player, this, "Test Inventory", 2);
+        Interface ui = interfaceFactory.createChestInterface(player, this, "TestInv", 2);
         UIFormedFixedSizePanel panel = new UIFormedFixedSizePanel(9, 2);
         ui.showPanel(null, panel);
         panel.setUIElement(0, 0, new UIElementBase() {
