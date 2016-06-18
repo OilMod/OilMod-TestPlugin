@@ -5,6 +5,7 @@ import de.sirati97.oilmod.api.test.backpack.BackpackItem;
 import de.sirati97.oilmod.api.test.magic.ArrowWandItem;
 import de.sirati97.oilmod.api.test.magic.ReplaceWandItem;
 import de.sirati97.oilmod.api.test.magic.VisBottleItem;
+import de.sirati97.oilmod.api.test.ui.InvseeUIBuilder;
 import de.sirati97.oilmod.api.test.ui.TestUIBuilder;
 import de.sirati97.oilmod.api.util.WeakReferenceTicker;
 import org.bukkit.Bukkit;
@@ -31,7 +32,8 @@ public class TestPlugin extends JavaPlugin {
     private WeakReferenceTicker ticker;
     private static TestPlugin instance;
     private TestUIBuilder testUIBuilder = new TestUIBuilder();
-    
+    private InvseeUIBuilder invseeUIBuilder = new InvseeUIBuilder();
+
     @Override
     public void onEnable() {
         instance = this;
@@ -69,6 +71,17 @@ public class TestPlugin extends JavaPlugin {
                     player.getInventory().addItem(item);
                 } else if (args[0].equalsIgnoreCase("ui")) {
                     testUIBuilder.displayNewUI(player);
+                } else if (args[0].equalsIgnoreCase("invsee")) {
+                    if (args.length != 2) {
+                        sender.sendMessage("/"+label + " invsee <player>");
+                    } else {
+                        Player other = Bukkit.getPlayer(args[1]);
+                        if (other == null) {
+                            player.sendMessage("Cannot find player with name " + args[1]);
+                        } else {
+                            invseeUIBuilder.displayNewUI(player, other);
+                        }
+                    }
                 } else if (args[0].equalsIgnoreCase("gc")) {
                     System.gc();
                 }
