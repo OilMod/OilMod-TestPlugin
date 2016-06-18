@@ -7,3 +7,4 @@ load: STARTUP
 commands:
     oilmodtest:
         description: 'Test command'
+        aliases: ['omt']
