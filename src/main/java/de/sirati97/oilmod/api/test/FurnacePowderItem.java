@@ -10,7 +10,7 @@ import org.bukkit.Material;
  */
 public class FurnacePowderItem extends OilItemBase {
     public FurnacePowderItem() {
-        super(Material.BLAZE_POWDER, 0, 3, 1, "Furnace Powder");
+        super(Material.BLAZE_POWDER, 0, "FurnacePowder", 1, "Furnace Powder");
     }
 
     @Override

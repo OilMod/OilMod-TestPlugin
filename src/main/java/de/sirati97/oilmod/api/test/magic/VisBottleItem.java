@@ -18,7 +18,7 @@ public class VisBottleItem  extends OilItemBase<VisBottleItemStack>{
     private final OilSpecificItemstackFactory[] creativeItems = new OilSpecificItemstackFactory[] {new VisBottleItemstackFactory((short)1),new VisBottleItemstackFactory((short)9),new VisBottleItemstackFactory((short)81),new VisBottleItemstackFactory((short)729)};
 
     public VisBottleItem() {
-        super(Material.DRAGONS_BREATH, 0, 6, 64, "Vis Bottle");
+        super(Material.DRAGONS_BREATH, 0, "VisBottle", 64, "Vis Bottle");
     }
 
     @Override

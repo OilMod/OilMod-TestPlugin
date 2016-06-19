@@ -11,7 +11,7 @@ import org.bukkit.enchantments.Enchantment;
  */
 public class ReplaceWandItem extends OilItemBase {
     public ReplaceWandItem() {
-        super(Material.BLAZE_ROD, 0, 5, 1, "Replace Wand");
+        super(Material.BLAZE_ROD, 0, "ReplaceWand", 1, "Replace Wand");
     }
 
     @Override

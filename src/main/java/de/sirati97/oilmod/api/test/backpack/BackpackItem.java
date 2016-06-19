@@ -20,9 +20,9 @@ import java.util.Random;
 public class BackpackItem extends OilItemBase<BackpackItemStack> {
     private final int rows;
 
-    public BackpackItem(int id, int rows) {
-        super(Material.LEATHER, 0, id, 1, names[rows-1] + " Backpack"); //defines Backpack item
-        this.rows = rows;
+    public BackpackItem(int rowsIndex) {
+        super(Material.LEATHER, 0, names[rowsIndex].replace(" ","")+"Backpack", 1, names[rowsIndex] + " Backpack"); //defines Backpack item
+        this.rows = rowsIndex+1;
     }
 
     public int getRows() {
@@ -93,17 +93,17 @@ public class BackpackItem extends OilItemBase<BackpackItemStack> {
         }
     }
 
-    public static void registerBackpacks(ItemRegistry registry, int startId) {
+    public static void registerBackpacks(ItemRegistry registry) {
         //Register Items
-        BackpackShoulderStrapsItem shoulderStrapsItem=new BackpackShoulderStrapsItem(startId++); //creates item with free id
-        BackpackSackItem sackItem=new BackpackSackItem(startId++);
+        BackpackShoulderStrapsItem shoulderStrapsItem=new BackpackShoulderStrapsItem();
+        BackpackSackItem sackItem=new BackpackSackItem();
         registry.register(shoulderStrapsItem); //registers the,
         registry.register(sackItem);
         backpacks = new BackpackItem[names.length];
-        for (int idOffset=0;idOffset<names.length;idOffset++) {
-            BackpackItem item = new BackpackItem(startId+idOffset, 1+idOffset); //creates all the different backpacks
+        for (int rows=0;rows<names.length;rows++) {
+            BackpackItem item = new BackpackItem(rows); //creates all the different backpacks
             registry.register(item);
-            backpacks[idOffset] = item;
+            backpacks[rows] = item;
         }
         //Add crafting recipes
         OilCraftingRecipe recipe;

@@ -17,7 +17,7 @@ public class CoffinItem extends OilItemBase<VisBottleItemStack>{
     private final OilSpecificItemstackFactory[] creativeItems = new OilSpecificItemstackFactory[] {new CoffinItemstackFactory((short)1),new CoffinItemstackFactory((short)9),new CoffinItemstackFactory((short)81),new CoffinItemstackFactory((short)729)};
 
     public CoffinItem() {
-        super(Material.ENDER_CHEST, 0, 6, 64, "Coffin");
+        super(Material.ENDER_CHEST, 0, "Coffin", 64, "Coffin");
     }
 
     @Override

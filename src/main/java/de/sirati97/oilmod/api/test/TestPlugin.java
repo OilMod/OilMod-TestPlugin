@@ -9,12 +9,10 @@ import de.sirati97.oilmod.api.test.ui.InvseeUIBuilder;
 import de.sirati97.oilmod.api.test.ui.TestUIBuilder;
 import de.sirati97.oilmod.api.util.WeakReferenceTicker;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Random;
@@ -38,16 +36,14 @@ public class TestPlugin extends JavaPlugin {
     public void onEnable() {
         instance = this;
         ticker = new WeakReferenceTicker(this, 1, 20);
-        itemRegistry = new ItemRegistry("oiltst");
+        itemRegistry = new ItemRegistry("oiltest");
         itemRegistry.register(testItem = new TestItem());
-        //itemRegistry.register(backpackItem = new BackpackItem());
         itemRegistry.register(furnacePowderItem = new FurnacePowderItem());
         itemRegistry.register(craftingBackpackItem = new CraftingBackpackItem());
-        itemRegistry.register(new ReplaceWandItem()); //5
-        itemRegistry.register(new VisBottleItem()); //6
-        itemRegistry.register(new ArrowWandItem()); //7
-        BackpackItem.registerBackpacks(itemRegistry, 8); //USES 8 next id is 16
-        Bukkit.addRecipe(new ShapelessRecipe(new ItemStack(Material.WOOD)).addIngredient(2, Material.STICK));
+        itemRegistry.register(new ReplaceWandItem());
+        itemRegistry.register(new VisBottleItem());
+        itemRegistry.register(new ArrowWandItem());
+        BackpackItem.registerBackpacks(itemRegistry);
     }
 
     @Override

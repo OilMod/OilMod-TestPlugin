@@ -11,7 +11,7 @@ import org.bukkit.enchantments.Enchantment;
  */
 public class ArrowWandItem extends OilItemBase {
     public ArrowWandItem() {
-        super(Material.BLAZE_ROD, 0, 7, 1, "Arrow Wand");
+        super(Material.BLAZE_ROD, 0, "ArrowWand", 1, "Arrow Wand");
     }
 
     @Override

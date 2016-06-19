@@ -10,8 +10,8 @@ import org.bukkit.event.block.Action;
  * Created by sirati97 on 24.03.2016.
  */
 public class BackpackSackItem extends OilItemBase {
-    public BackpackSackItem(int id) {
-        super(Material.BOAT, 0, id, 64, "Backpack Sack");//defines Backpack Sack item
+    public BackpackSackItem() {
+        super(Material.BOAT, 0, "BackpackSack", 64, "Backpack Sack");//defines Backpack Sack item
     }
 
     @Override

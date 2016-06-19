@@ -10,8 +10,8 @@ import org.bukkit.event.block.Action;
  * Created by sirati97 on 24.03.2016.
  */
 public class BackpackShoulderStrapsItem extends OilItemBase {
-    public BackpackShoulderStrapsItem(int id) {
-        super(Material.EMPTY_MAP, 0, id, 64, "Backpack Shoulder Straps");//defines Backpack Shoulder Strap item
+    public BackpackShoulderStrapsItem() {
+        super(Material.EMPTY_MAP, 0, "BackpackShoulderStraps", 64, "Backpack Shoulder Straps");//defines Backpack Shoulder Strap item
     }
 
     @Override
