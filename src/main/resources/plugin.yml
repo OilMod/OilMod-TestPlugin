@@ -8,3 +8,7 @@ commands:
     oilmodtest:
         description: 'Test command'
         aliases: ['omt']
+    invsee:
+        description: 'Advanced invsee command'
+        useage: '<command> <player>'
+        aliases: ['inv']

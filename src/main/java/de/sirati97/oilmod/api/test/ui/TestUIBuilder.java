@@ -3,7 +3,6 @@ package de.sirati97.oilmod.api.test.ui;
 import de.sirati97.oilmod.api.userinterface.Click;
 import de.sirati97.oilmod.api.userinterface.InteractableUIElementBase;
 import de.sirati97.oilmod.api.userinterface.SimpleUIElementBase;
-import de.sirati97.oilmod.api.userinterface.UIArgument;
 import de.sirati97.oilmod.api.userinterface.UIElement;
 import de.sirati97.oilmod.api.userinterface.UIFormedFixedSizePanel;
 import de.sirati97.oilmod.api.userinterface.UserInterfaceBuilder;
@@ -26,7 +25,7 @@ public class TestUIBuilder extends UserInterfaceBuilder {
     }
 
     @Override
-    protected UserInterface buildDisplay(Player player, UIArgument argument, UserInterfaceFactory interfaceFactory) {
+    protected UserInterface buildDisplay(Player player, Object argument, UserInterfaceFactory interfaceFactory) {
         UserInterface ui = interfaceFactory.createChestInterface(player, this, "Test Inventory", 2); //erzeugt ein userinterface für spieler player mit dem namen 'Test Inventory' und zwei reihen
         UIFormedFixedSizePanel panel = new UIFormedFixedSizePanel(9, 2); //erzeugt ein panel mit der größe 9*2 (entspricht zwei reihen)
         UIFormedFixedSizePanel playerPanel = new UIFormedFixedSizePanel(9, 4);

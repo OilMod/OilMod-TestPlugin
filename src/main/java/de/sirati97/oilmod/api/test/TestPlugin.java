@@ -5,16 +5,20 @@ import de.sirati97.oilmod.api.test.backpack.BackpackItem;
 import de.sirati97.oilmod.api.test.magic.ArrowWandItem;
 import de.sirati97.oilmod.api.test.magic.ReplaceWandItem;
 import de.sirati97.oilmod.api.test.magic.VisBottleItem;
+import de.sirati97.oilmod.api.test.magic2.ArrowWandforcyItem;
+import de.sirati97.oilmod.api.test.magic2.ReplaceWandforcyItem;
+import de.sirati97.oilmod.api.test.magic2.WandItem;
 import de.sirati97.oilmod.api.test.ui.InvseeUIBuilder;
 import de.sirati97.oilmod.api.test.ui.TestUIBuilder;
 import de.sirati97.oilmod.api.util.WeakReferenceTicker;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.StringReader;
 import java.util.Random;
 
 /**
@@ -44,6 +48,10 @@ public class TestPlugin extends JavaPlugin {
         itemRegistry.register(new VisBottleItem());
         itemRegistry.register(new ArrowWandItem());
         BackpackItem.registerBackpacks(itemRegistry);
+        itemRegistry.register(new WandItem());
+        itemRegistry.register(new ArrowWandforcyItem());
+        itemRegistry.register(new ReplaceWandforcyItem());
+        getCommand("invsee").setExecutor(new InvseeCommand());
     }
 
     @Override
@@ -67,17 +75,13 @@ public class TestPlugin extends JavaPlugin {
                     player.getInventory().addItem(item);
                 } else if (args[0].equalsIgnoreCase("ui")) {
                     testUIBuilder.displayNewUI(player);
-                } else if (args[0].equalsIgnoreCase("invsee")) {
-                    if (args.length != 2) {
-                        sender.sendMessage("/"+label + " invsee <player>");
-                    } else {
-                        Player other = Bukkit.getPlayer(args[1]);
-                        if (other == null) {
-                            player.sendMessage("Cannot find player with name " + args[1]);
-                        } else {
-                            invseeUIBuilder.displayNewUI(player, other);
-                        }
-                    }
+                } else if (args[0].equalsIgnoreCase("yaml")) {
+                    YamlConfiguration configuration = new YamlConfiguration();
+                    configuration.set("item", player.getInventory().getItemInMainHand());
+                    System.out.println(configuration.saveToString());
+                    configuration = YamlConfiguration.loadConfiguration(new StringReader(configuration.saveToString()));
+                    ItemStack itemStack = configuration.getItemStack("item");
+                    player.getInventory().addItem(itemStack);
                 } else if (args[0].equalsIgnoreCase("gc")) {
                     System.gc();
                 }

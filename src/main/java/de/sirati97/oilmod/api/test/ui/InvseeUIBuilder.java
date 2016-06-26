@@ -1,6 +1,5 @@
 package de.sirati97.oilmod.api.test.ui;
 
-import de.sirati97.oilmod.api.userinterface.UIArgument;
 import de.sirati97.oilmod.api.userinterface.UIPanel;
 import de.sirati97.oilmod.api.userinterface.UserInterfaceBuilder;
 import de.sirati97.oilmod.api.userinterface.internal.UserInterface;
@@ -10,15 +9,14 @@ import org.bukkit.entity.Player;
 /**
  * Created by sirati97 on 18.06.2016 for OilMod-TestPlugin.
  */
-public class InvseeUIBuilder extends UserInterfaceBuilder<InvseeUIBuilder.InvseeArgument> {
+public class InvseeUIBuilder extends UserInterfaceBuilder<Player> {
 
     public void displayNewUI(Player player, Player other) {
-        displayNewUI(player, new InvseeArgument(other));
+        super.displayNewUI(player, other);
     }
 
     @Override
-    protected UserInterface buildDisplay(Player player, InvseeArgument argument, UserInterfaceFactory userInterfaceFactory) {
-        Player other = argument.other;
+    protected UserInterface buildDisplay(Player player, Player other, UserInterfaceFactory userInterfaceFactory) {
         UserInterface ui = userInterfaceFactory.createChestInterface(player, this, other.getName() + "'s Inv", 5);
         UIPanel playerPanel = ui.createPlayerPanel(true, false, false, true);
         UIPanel otherPanel = ui.createPlayerPanel(other, false, true, true, true);
@@ -26,11 +24,4 @@ public class InvseeUIBuilder extends UserInterfaceBuilder<InvseeUIBuilder.Invsee
         return ui;
     }
 
-    protected static class InvseeArgument implements UIArgument {
-        public final Player other;
-
-        public InvseeArgument(Player other) {
-            this.other = other;
-        }
-    }
 }
