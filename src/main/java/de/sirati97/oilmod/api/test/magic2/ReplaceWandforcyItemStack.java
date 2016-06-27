@@ -6,6 +6,8 @@ import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.test.BlockFilter;
 import de.sirati97.oilmod.api.test.TestPlugin;
+import de.sirati97.oilmod.api.userinterface.UIOilInventoryPanel;
+import de.sirati97.oilmod.api.userinterface.UIPanel;
 import de.sirati97.oilmod.api.util.OilUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -32,7 +34,7 @@ import static de.sirati97.oilmod.api.test.InventoryUtil.transferInventory;
 public class ReplaceWandforcyItemStack extends WandforcyItemStackBase<ReplaceWandforcyItemStack> {
     private static final BlockFace[] SITES = new BlockFace[]{BlockFace.DOWN, BlockFace.UP, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST};
     private ModInventoryObject blockContainer = InventoryFactoryBase.getInstance().createBasicInventory("blockCon", this, 18, "Block Container", BlockFilter.INSTANCE, true);
-
+    private UIPanel uiPanel;
 
     public ReplaceWandforcyItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
         super(nmsItemStack, item);
@@ -189,5 +191,10 @@ public class ReplaceWandforcyItemStack extends WandforcyItemStackBase<ReplaceWan
         List<ItemStack> drops= super.combineWith(other);
         transferInventory(blockContainer.getBukkitInventory(), other.blockContainer.getBukkitInventory(), drops);
         return drops;
+    }
+
+    @Override
+    public UIPanel getUIPanel() {
+        return uiPanel==null?uiPanel=new UIOilInventoryPanel(blockContainer):uiPanel;
     }
 }

@@ -22,7 +22,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import static de.sirati97.oilmod.api.test.InventoryUtil.dropAll;
@@ -43,9 +43,8 @@ public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack impl
 
     @Override
     public boolean onUseOnBlock(Player player, Action action, Block blockClicked, BlockFace blockFace) {
-        ItemStack wandforcyItemStack = activeWandforcy.getItemStack();
-        if (!player.isSneaking() && wandforcyItemStack != null) {
-            Wandforcy wandforcy = (Wandforcy) ((OilBukkitItemStack)wandforcyItemStack).getOilItemStack();
+        Wandforcy wandforcy = getActiveWandforcy();
+        if (!player.isSneaking() && wandforcy != null) {
             wandforcy.onWandUseOnBlock(this, player, action, blockClicked, blockFace);
         }
         return true;
@@ -56,9 +55,8 @@ public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack impl
         if (player.isSneaking()) {
             WandUIBuilder.INSTANCE.displayNewUI(player, this);
         } else {
-            ItemStack wandforcyItemStack = activeWandforcy.getItemStack();
-            if (wandforcyItemStack != null) {
-                Wandforcy wandforcy = (Wandforcy) ((OilBukkitItemStack)wandforcyItemStack).getOilItemStack();
+            Wandforcy wandforcy = getActiveWandforcy();
+            if (wandforcy != null) {
                 wandforcy.onWandUse(this, player, action);
             }
         }
@@ -67,9 +65,8 @@ public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack impl
 
     @Override
     public boolean onLeftClickOnBlock(Player player, Action action, Block blockClicked, BlockFace blockFace) {
-        ItemStack wandforcyItemStack = activeWandforcy.getItemStack();
-        if (!player.isSneaking() && wandforcyItemStack != null) {
-            Wandforcy wandforcy = (Wandforcy) ((OilBukkitItemStack)wandforcyItemStack).getOilItemStack();
+        Wandforcy wandforcy = getActiveWandforcy();
+        if (wandforcy != null) {
             return wandforcy.onWandLeftClickOnBlock(this, player, action, blockClicked, blockFace);
         }
         return false;
@@ -77,9 +74,8 @@ public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack impl
 
     @Override
     public boolean onLeftClick(Player player, Action action) {
-        ItemStack wandforcyItemStack = activeWandforcy.getItemStack();
-        if (!player.isSneaking() && wandforcyItemStack != null) {
-            Wandforcy wandforcy = (Wandforcy) ((OilBukkitItemStack)wandforcyItemStack).getOilItemStack();
+        Wandforcy wandforcy = getActiveWandforcy();
+        if (wandforcy != null) {
             return wandforcy.onWandLeftClick(this, player, action);
         }
         return false;
@@ -149,7 +145,8 @@ public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack impl
 
     @Override
     protected List<String> createDescription() {
-        return Collections.singletonList(getVisStoredDescriptionLine(vis.getData()));
+        //noinspection ArraysAsListWithZeroOrOneArgument
+        return Arrays.asList(getVisStoredDescriptionLine(vis.getData()));
     }
 
 
@@ -199,5 +196,16 @@ public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack impl
     @Override
     public boolean checkVis(int amount) {
         return useVis(false, amount);
+    }
+
+    public Wandforcy getActiveWandforcy() {
+        ItemStack wandforcyItemStack = activeWandforcy.getItemStack();
+        if (wandforcyItemStack instanceof OilBukkitItemStack) {
+            OilItemStack oilItemStack = ((OilBukkitItemStack)wandforcyItemStack).getOilItemStack();
+            if (oilItemStack instanceof Wandforcy) {
+                return (Wandforcy) oilItemStack;
+            }
+        }
+        return null;
     }
 }

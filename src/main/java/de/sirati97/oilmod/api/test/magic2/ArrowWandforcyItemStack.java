@@ -3,6 +3,7 @@ package de.sirati97.oilmod.api.test.magic2;
 import de.sirati97.oilmod.api.data.LongData;
 import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;
+import de.sirati97.oilmod.api.userinterface.UIPanel;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
@@ -37,6 +38,11 @@ public class ArrowWandforcyItemStack extends WandforcyItemStackBase<ArrowWandfor
             }
             arrow.setShooter(player);
         }
+    }
+
+    @Override
+    public UIPanel getUIPanel() {
+        return null;
     }
 
     @Override

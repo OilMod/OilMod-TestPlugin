@@ -6,6 +6,7 @@ import de.sirati97.oilmod.api.test.magic.ArrowWandItem;
 import de.sirati97.oilmod.api.test.magic.ReplaceWandItem;
 import de.sirati97.oilmod.api.test.magic.VisBottleItem;
 import de.sirati97.oilmod.api.test.magic2.ArrowWandforcyItem;
+import de.sirati97.oilmod.api.test.magic2.OreMagnetWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.ReplaceWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.WandItem;
 import de.sirati97.oilmod.api.test.ui.InvseeUIBuilder;
@@ -51,6 +52,7 @@ public class TestPlugin extends JavaPlugin {
         itemRegistry.register(new WandItem());
         itemRegistry.register(new ArrowWandforcyItem());
         itemRegistry.register(new ReplaceWandforcyItem());
+        itemRegistry.register(new OreMagnetWandforcyItem());
         getCommand("invsee").setExecutor(new InvseeCommand());
     }
 

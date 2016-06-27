@@ -1,5 +1,6 @@
 package de.sirati97.oilmod.api.test.magic2;
 
+import de.sirati97.oilmod.api.userinterface.UIPanel;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -17,4 +18,5 @@ public interface Wandforcy {
 
     boolean onWandLeftClickOnBlock(Wand wand, Player player, Action action, Block blockClicked, BlockFace blockFace);
 
+    UIPanel getUIPanel();
 }
