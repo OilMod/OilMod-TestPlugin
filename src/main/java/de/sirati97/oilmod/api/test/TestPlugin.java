@@ -6,12 +6,17 @@ import de.sirati97.oilmod.api.test.magic.ArrowWandItem;
 import de.sirati97.oilmod.api.test.magic.ReplaceWandItem;
 import de.sirati97.oilmod.api.test.magic.VisBottleItem;
 import de.sirati97.oilmod.api.test.magic2.ArrowWandforcyItem;
+import de.sirati97.oilmod.api.test.magic2.FlameBeamWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.OreMagnetWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.ReplaceWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.WandItem;
 import de.sirati97.oilmod.api.test.ui.InvseeUIBuilder;
 import de.sirati97.oilmod.api.test.ui.TestUIBuilder;
 import de.sirati97.oilmod.api.util.WeakReferenceTicker;
+import org.bukkit.Bukkit;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -53,11 +58,12 @@ public class TestPlugin extends JavaPlugin {
         itemRegistry.register(new ArrowWandforcyItem());
         itemRegistry.register(new ReplaceWandforcyItem());
         itemRegistry.register(new OreMagnetWandforcyItem());
+        itemRegistry.register(new FlameBeamWandforcyItem());
         getCommand("invsee").setExecutor(new InvseeCommand());
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, final Command command, final String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (command.getName().equals("oilmodtest") && args.length > 0) {
@@ -84,6 +90,44 @@ public class TestPlugin extends JavaPlugin {
                     configuration = YamlConfiguration.loadConfiguration(new StringReader(configuration.saveToString()));
                     ItemStack itemStack = configuration.getItemStack("item");
                     player.getInventory().addItem(itemStack);
+                } else if (args[0].equalsIgnoreCase("particle")) {
+                    if (args.length<3) {
+                        player.sendMessage("/" + label + " particle [particle] [data/id]");
+                    } else {
+                        final boolean mode = args[2].equalsIgnoreCase("data");
+                        Effect effect = Effect.getByName(args[1]);
+
+                        if (effect == null) {
+                            effect = Effect.valueOf(args[1]);
+                        }
+                        if (effect == null) {
+                            player.sendMessage("there is no particle called " + args[1]);
+                        } else {
+                            final Location loc = player.getEyeLocation();
+                            final Effect finalEffect = effect;
+                            Bukkit.getScheduler().runTaskLater(this, new Runnable() {
+                                final World w = loc.getWorld();
+                                int counter = 0;
+                                int i=0;
+                                @Override
+                                public void run() {
+                                    w.spigot().playEffect(loc, finalEffect, mode ? 0 : counter, mode ? counter : 0, 0,0,0, (float) 0.2, 1, 30);
+                                    i++;
+                                    if (i == 10) {
+                                        i = 0;
+                                        counter++;
+                                    }
+                                    if (counter < 1000) {
+                                        Bukkit.getScheduler().runTaskLater(TestPlugin.this, this, 2);
+                                    }
+                                }
+                            }, 30);
+                        }
+                    }
+
+
+
+
                 } else if (args[0].equalsIgnoreCase("gc")) {
                     System.gc();
                 }
