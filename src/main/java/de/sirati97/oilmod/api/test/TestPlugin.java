@@ -7,8 +7,10 @@ import de.sirati97.oilmod.api.test.magic.ReplaceWandItem;
 import de.sirati97.oilmod.api.test.magic.VisBottleItem;
 import de.sirati97.oilmod.api.test.magic2.ArrowWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.FlameBeamWandforcyItem;
+import de.sirati97.oilmod.api.test.magic2.LifestealBeamWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.OreMagnetWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.ReplaceWandforcyItem;
+import de.sirati97.oilmod.api.test.magic2.SniperWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.WandItem;
 import de.sirati97.oilmod.api.test.ui.InvseeUIBuilder;
 import de.sirati97.oilmod.api.test.ui.TestUIBuilder;
@@ -59,6 +61,8 @@ public class TestPlugin extends JavaPlugin {
         itemRegistry.register(new ReplaceWandforcyItem());
         itemRegistry.register(new OreMagnetWandforcyItem());
         itemRegistry.register(new FlameBeamWandforcyItem());
+        itemRegistry.register(new LifestealBeamWandforcyItem());
+        itemRegistry.register(new SniperWandforcyItem());
         getCommand("invsee").setExecutor(new InvseeCommand());
     }
 
@@ -128,6 +132,8 @@ public class TestPlugin extends JavaPlugin {
 
 
 
+                } else if (args[0].equalsIgnoreCase("moreItems")) {
+                    player.getInventory().getItemInMainHand().setAmount(64);
                 } else if (args[0].equalsIgnoreCase("gc")) {
                     System.gc();
                 }

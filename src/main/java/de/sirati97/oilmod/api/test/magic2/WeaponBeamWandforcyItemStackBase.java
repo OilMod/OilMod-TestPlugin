@@ -1,5 +1,6 @@
 package de.sirati97.oilmod.api.test.magic2;
 
+import de.sirati97.oilmod.api.data.LongData;
 import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.test.TestPlugin;
@@ -23,6 +24,7 @@ import java.util.List;
 public abstract class WeaponBeamWandforcyItemStackBase<T extends WeaponBeamWandforcyItemStackBase<T>> extends BeamWandforcyItemStackBase<T> {
     private static final ParticleSpawnData SMOKE_PARTICLES = new ParticleSpawnData(Effect.SMALL_SMOKE).setParticleCount(2);
     private List<LivingEntity> lastEntities;
+    private final LongData lastUse = new LongData("lastUse", this);
 
     public WeaponBeamWandforcyItemStackBase(NMSItemStack nmsItemStack, OilItemBase item) {
         super(nmsItemStack, item);
@@ -63,24 +65,51 @@ public abstract class WeaponBeamWandforcyItemStackBase<T extends WeaponBeamWandf
     protected void displayParticles(World world, Location loc, Vector vector) {
         OilUtil.spawnParticleLine(loc, SMOKE_PARTICLES, vector);
         if (TestPlugin.rnd.nextInt(8)==0) {
-            OilUtil.spawnParticleCloud(loc, getSecondaryParticles());
+            ParticleSpawnData secondary = getSecondaryParticles();
+            if (secondary != null) {
+                OilUtil.spawnParticleCloud(loc, getSecondaryParticles());
+            }
         }
     }
 
     protected abstract ParticleSpawnData getSecondaryParticles();
     protected abstract boolean checkGoal(Wand wand, Player player, List<LivingEntity> lastEntities);
-    protected abstract void hit(Wand wand, Player player, LivingEntity lastEntities);
+    protected abstract void hit(Wand wand, Player player, LivingEntity entity, int index);
+    protected abstract int getAfterHitCooldownMs();
 
     @Override
     protected void onGoal(Wand wand, Player player, Location eyes, Location goal, Block goalBlock) {
         if (checkGoal(wand, player, lastEntities)) {
+            int counter = 0;
             for (LivingEntity entity:lastEntities) {
-                OilUtil.setLastDamager(entity, player);
-                hit(wand, player, entity);
+                hit(wand, player, entity, counter++);
             }
+            setCooldown(getAfterHitCooldownMs());
         }
-
     }
+
+    @Override
+    protected boolean canUse(Wand wand, Player player) {
+        int cooldown = getCurrentCooldown();
+        if (cooldown > 1000) {
+            player.sendMessage("On cooldown. Wait " + (cooldown+500)/1000 + "s.");
+        }
+        return cooldown<=0;
+    }
+
+    @Override
+    protected void startBeams(Wand wand, Player player) {
+    }
+
+    public void setCooldown(int ms) {
+        lastUse.setData(System.currentTimeMillis()+ms);
+    }
+
+    public int getCurrentCooldown() {
+        long cooldown = lastUse.getData() - System.currentTimeMillis();
+        return cooldown<0?0:((int)cooldown);
+    }
+
     @Override
     public UIPanel getUIPanel() {
         return null;

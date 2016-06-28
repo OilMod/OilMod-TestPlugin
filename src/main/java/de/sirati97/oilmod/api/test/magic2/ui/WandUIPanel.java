@@ -39,7 +39,7 @@ public class WandUIPanel extends UIFormedPanel {
                 }
             }
         } else if (top+1 <getHeight()) {
-            int localIndex = left * (top-2)*getWidth();
+            int localIndex = left + (top-3)*getWidth();
             if (localIndex < wandItemStack.getWandforcyContainer().getBukkitInventory().getSize()) {
                 return UIElementResultFactory.createResult(wandforcyElement, localIndex);
             }

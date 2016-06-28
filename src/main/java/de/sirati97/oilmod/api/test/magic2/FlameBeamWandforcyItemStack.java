@@ -2,6 +2,7 @@ package de.sirati97.oilmod.api.test.magic2;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;
+import de.sirati97.oilmod.api.util.OilUtil;
 import de.sirati97.oilmod.api.util.ParticleSpawnData;
 import org.bukkit.Effect;
 import org.bukkit.entity.LivingEntity;
@@ -21,12 +22,12 @@ public class FlameBeamWandforcyItemStack extends WeaponBeamWandforcyItemStackBas
 
     @Override
     protected int getMinVisUsage() {
-        return 2;
+        return 1;
     }
 
     @Override
     protected int getMaxTryVisUsage() {
-        return 4;
+        return 3;
     }
 
     @Override
@@ -40,8 +41,21 @@ public class FlameBeamWandforcyItemStack extends WeaponBeamWandforcyItemStackBas
     }
 
     @Override
-    protected void hit(Wand wand, Player player, LivingEntity lastEntities) {
-        lastEntities.setFireTicks(50);
+    protected void hit(Wand wand, Player player, LivingEntity entity, int index) {
+        int oldFireTicks = entity.getFireTicks();
+        oldFireTicks = oldFireTicks<0?0:oldFireTicks;
+        if (oldFireTicks<50 && wand.checkVis((60-oldFireTicks)/20)) {
+            if (oldFireTicks<=0) {
+                OilUtil.setLastDamager(entity, player);
+            }
+            entity.setFireTicks(50);
+            wand.useVis((60-oldFireTicks)/20);
+        }
+    }
+
+    @Override
+    protected int getAfterHitCooldownMs() {
+        return 500;
     }
 
 

@@ -21,8 +21,11 @@ public abstract class BeamWandforcyItemStackBase<T extends BeamWandforcyItemStac
 
     @Override
     public final void onWandUse(Wand wand, final Player player, Action action) {
-        if (wand.checkVis(getMinVisUsage())) {
-            wand.useVis(getMinVisUsage());
+        int minVis = getMinVisUsage();
+        int maxVis = getMaxTryVisUsage();
+        if (wand.checkVis(minVis+maxVis) && canUse(wand, player)) {
+            wand.useVis(minVis);
+            startBeams(wand, player);
             double maxDist = getMaxDistance(wand);
             maxDist *= maxDist; //square
             double minDist = getMinDistance(wand);
@@ -31,7 +34,7 @@ public abstract class BeamWandforcyItemStackBase<T extends BeamWandforcyItemStac
             final World world = eyes.getWorld();
             round:
             for (int i = 0; i < getTries(); i++) {
-                if (wand.checkVis(getMaxTryVisUsage())) {
+                if (wand.checkVis(maxVis)) {
                     Vector v = player.getLocation().getDirection().normalize();
                     Location tempLoc = eyes.clone().add(v);
                     double dist = tempLoc.distanceSquared(eyes);
@@ -72,6 +75,8 @@ public abstract class BeamWandforcyItemStackBase<T extends BeamWandforcyItemStac
     protected abstract int getNormalDiversionDivisor();
     protected abstract void displayParticles(World world, Location loc, Vector vector);
     protected abstract void onGoal(Wand wand, Player player, Location eyes, Location goal, Block goalBlock);
+    protected abstract boolean canUse(Wand wand, Player player);
+    protected abstract void startBeams(Wand wand, Player player);
 
 
     public static boolean isUnbreakableBlock(Material mat) {

@@ -25,8 +25,8 @@ public class ArrowWandforcyItemStack extends WandforcyItemStackBase<ArrowWandfor
         int arrowKnockback = getEnchantmentLevel(Enchantment.ARROW_KNOCKBACK);
         int arrowDamage = getEnchantmentLevel(Enchantment.ARROW_DAMAGE);
         int durability = getEnchantmentLevel(Enchantment.DURABILITY);
-        int visUsed = (int) ((15+(hasFlame?8:0)+2*arrowKnockback+3*arrowDamage)*(3d/(3d+durability)));
-        if ((lastShot.getData() > System.currentTimeMillis() || lastShot.getData()+(2000d/Math.cbrt(getEnchantmentLevel(Enchantment.DIG_SPEED)+1)) < System.currentTimeMillis()) && wand.checkVis(visUsed)){
+        int visUsed = (int) ((25+(hasFlame?8:0)+2*arrowKnockback+3*arrowDamage)*(3D/(3D+durability)));
+        if ((lastShot.getData() > System.currentTimeMillis() || lastShot.getData()+(2000D/Math.cbrt(getEnchantmentLevel(Enchantment.DIG_SPEED)+1)) < System.currentTimeMillis()) && wand.checkVis(visUsed)){
             lastShot.setData(System.currentTimeMillis());
 
             wand.useVis(visUsed);

@@ -138,6 +138,14 @@ public class OreMagnetWandforcyItemStack extends BeamWandforcyItemStackBase<OreM
 
     }
 
+    @Override
+    protected boolean canUse(Wand wand, Player player) {
+        return true;
+    }
+
+    @Override
+    protected void startBeams(Wand wand, Player player) {}
+
     @SuppressWarnings("deprecation")
     private static void switchBlocks(Block to, Block from, List<BlockState> blockStates) {
         blockStates.add(from.getState());
