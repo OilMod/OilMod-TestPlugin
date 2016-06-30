@@ -10,9 +10,16 @@ import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilBukkitItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.items.OilItemStack;
+import de.sirati97.oilmod.api.test.TestPlugin;
 import de.sirati97.oilmod.api.test.magic.VisFilter;
 import de.sirati97.oilmod.api.test.magic.VisHolder;
+import de.sirati97.oilmod.api.test.magic2.node.Node;
 import de.sirati97.oilmod.api.test.magic2.ui.WandUIBuilder;
+import de.sirati97.oilmod.api.util.OilUtil;
+import de.sirati97.oilmod.api.util.ParticleSpawnData;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.HumanEntity;
@@ -20,6 +27,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +40,8 @@ import static de.sirati97.oilmod.api.test.InventoryUtil.transferInventory;
  * Created by sirati97 on 11.03.2016.
  */
 public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack implements VisHolder, Wand{
+    private static final ParticleSpawnData PORTAL_PARTICLES = new ParticleSpawnData(Effect.PORTAL);
+    private static final ParticleSpawnData SMOKE_PARTICLES = new ParticleSpawnData(Effect.SMALL_SMOKE).setParticleCount(2);
     private final ModInventoryObject visContainer = InventoryFactoryBase.getInstance().createBasicInventory("visCon", this, 5, "Vis Container", VisFilter.INSTANCE);
     private final ModInventoryObject wandforcyContainer = InventoryFactoryBase.getInstance().createBasicInventory("wandforcyCon", this, 5, "Wandforcy Container", WandforcyFilter.INSTANCE);
     private final ItemStackData activeWandforcy = ItemStackData.createInstance("activeWandforcy", this);
@@ -56,7 +66,9 @@ public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack impl
             WandUIBuilder.INSTANCE.displayNewUI(player, this);
         } else {
             Wandforcy wandforcy = getActiveWandforcy();
-            if (wandforcy != null) {
+            if (wandforcy == null) {
+                onNoForcyUse(player, action);
+            } else {
                 wandforcy.onWandUse(this, player, action);
             }
         }
@@ -207,5 +219,47 @@ public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack impl
             }
         }
         return null;
+    }
+
+
+    private long lastEmptyNodeMessage = 0;
+    public final void onNoForcyUse(Player player, Action action) {
+        double maxDist = 8*8;
+        final Location eyes = player.getEyeLocation();
+        for (int i = 0; i < 1; i++) {
+            Vector v = player.getLocation().getDirection().normalize();
+            Location tempLoc = eyes.clone().add(v);
+            double dist = tempLoc.distanceSquared(eyes);
+            Block b = tempLoc.getBlock();
+            Material mat = b.getType();
+            while (tempLoc.getY() > 0 && dist < maxDist) {
+                if (!mat.isSolid()) {
+                    OilUtil.spawnParticleLine(tempLoc, SMOKE_PARTICLES, v);
+                }
+                if (dist > 2) {
+                    Node node = TestPlugin.getNodeManager().getNearestInRange(tempLoc, 3);
+                    if (node != null && node.getLocation().distanceSquared(eyes) > 2) {
+                        Node.setStrikeTo(tempLoc, node.getLocation(), SMOKE_PARTICLES, null, 1, 4);
+                        if (node.stealVis(5)) {
+                            Node.setStrikeTo(node.getLocation(), player, SMOKE_PARTICLES, PORTAL_PARTICLES, 1, 3);
+                            setVis(getVis() + 5);
+                        } else {
+                            if (lastEmptyNodeMessage +5000<System.currentTimeMillis()) {
+                                player.sendMessage("This node is empty.");
+                                lastEmptyNodeMessage = System.currentTimeMillis();
+                            }
+                            return;
+                        }
+                    }
+                }
+                v.setX(v.getX() + TestPlugin.rnd.nextDouble() / 3 * (TestPlugin.rnd.nextBoolean() ? 1 : -1));
+                v.setY(v.getY() + TestPlugin.rnd.nextDouble() / 3 * (TestPlugin.rnd.nextBoolean() ? 1 : -1));
+                v.setZ(v.getZ() + TestPlugin.rnd.nextDouble() / 3 * (TestPlugin.rnd.nextBoolean() ? 1 : -1));
+                tempLoc = tempLoc.add(v);
+                dist = tempLoc.distanceSquared(eyes);
+                b = tempLoc.getBlock();
+                mat = b.getType();
+            }
+        }
     }
 }

@@ -73,4 +73,5 @@ public abstract class WandforcyItemStackBase<T extends WandforcyItemStackBase<T>
     protected List<ItemStack> combineWith(T other) {
         return new ArrayList<>();
     }
+
 }

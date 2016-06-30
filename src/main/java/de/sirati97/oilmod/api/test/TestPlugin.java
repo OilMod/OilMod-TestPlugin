@@ -12,6 +12,7 @@ import de.sirati97.oilmod.api.test.magic2.OreMagnetWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.ReplaceWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.SniperWandforcyItem;
 import de.sirati97.oilmod.api.test.magic2.WandItem;
+import de.sirati97.oilmod.api.test.magic2.node.NodeManager;
 import de.sirati97.oilmod.api.test.ui.InvseeUIBuilder;
 import de.sirati97.oilmod.api.test.ui.TestUIBuilder;
 import de.sirati97.oilmod.api.util.WeakReferenceTicker;
@@ -43,10 +44,13 @@ public class TestPlugin extends JavaPlugin {
     private static TestPlugin instance;
     private TestUIBuilder testUIBuilder = new TestUIBuilder();
     private InvseeUIBuilder invseeUIBuilder = new InvseeUIBuilder();
+    private NodeManager nodeManager;
 
     @Override
     public void onEnable() {
         instance = this;
+        nodeManager = new NodeManager();
+        nodeManager.init(this);
         ticker = new WeakReferenceTicker(this, 1, 20);
         itemRegistry = new ItemRegistry("oiltest");
         itemRegistry.register(testItem = new TestItem());
@@ -64,6 +68,11 @@ public class TestPlugin extends JavaPlugin {
         itemRegistry.register(new LifestealBeamWandforcyItem());
         itemRegistry.register(new SniperWandforcyItem());
         getCommand("invsee").setExecutor(new InvseeCommand());
+    }
+
+    @Override
+    public void onDisable() {
+        nodeManager.dispose();
     }
 
     @Override
@@ -134,6 +143,8 @@ public class TestPlugin extends JavaPlugin {
 
                 } else if (args[0].equalsIgnoreCase("moreItems")) {
                     player.getInventory().getItemInMainHand().setAmount(64);
+                } else if (args[0].equalsIgnoreCase("spawnNode")) {
+                    nodeManager.spawnNode(player.getEyeLocation());
                 } else if (args[0].equalsIgnoreCase("gc")) {
                     System.gc();
                 }
@@ -150,7 +161,9 @@ public class TestPlugin extends JavaPlugin {
         return instance;
     }
 
-
+    public static NodeManager getNodeManager() {
+        return instance.nodeManager;
+    }
 
     public static void printTrace(String text) {
         System.out.println("Printing stack trace for " + text + ":");
