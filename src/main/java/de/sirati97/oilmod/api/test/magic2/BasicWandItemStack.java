@@ -39,7 +39,7 @@ import static de.sirati97.oilmod.api.test.InventoryUtil.transferInventory;
 /**
  * Created by sirati97 on 11.03.2016.
  */
-public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack implements VisHolder, Wand{
+public class BasicWandItemStack<T extends BasicWandItemStack<T>> extends OilItemStack implements VisHolder, Wand{
     private static final ParticleSpawnData PORTAL_PARTICLES = new ParticleSpawnData(Effect.PORTAL);
     private static final ParticleSpawnData SMOKE_PARTICLES = new ParticleSpawnData(Effect.SMALL_SMOKE).setParticleCount(2);
     private final ModInventoryObject visContainer = InventoryFactoryBase.getInstance().createBasicInventory("visCon", this, 5, "Vis Container", VisFilter.INSTANCE);
@@ -47,7 +47,7 @@ public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack impl
     private final ItemStackData activeWandforcy = ItemStackData.createInstance("activeWandforcy", this);
     private final IntegerData vis = new IntegerData("visStored", this);
 
-    public WandItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public BasicWandItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
         super(nmsItemStack, item);
     }
 
@@ -177,11 +177,11 @@ public class WandItemStack<T extends WandItemStack<T>> extends OilItemStack impl
 
     @Override
     public final boolean canCombineAnvil(ItemStack itemStack, HumanEntity human) {
-        return itemStack instanceof OilBukkitItemStack && ((OilBukkitItemStack) itemStack).getOilItemStack() instanceof WandItemStack && checkClass((WandItemStack) ((OilBukkitItemStack) itemStack).getOilItemStack());
+        return itemStack instanceof OilBukkitItemStack && ((OilBukkitItemStack) itemStack).getOilItemStack() instanceof BasicWandItemStack && checkClass((BasicWandItemStack) ((OilBukkitItemStack) itemStack).getOilItemStack());
     }
 
-    protected boolean checkClass(WandItemStack itemStack) {
-        return itemStack.getClass()==WandItemStack.class;
+    protected boolean checkClass(BasicWandItemStack itemStack) {
+        return itemStack.getClass()==BasicWandItemStack.class;
     }
 
     public ModInventoryObject getWandforcyContainer() {

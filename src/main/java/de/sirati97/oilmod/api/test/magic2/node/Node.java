@@ -41,7 +41,6 @@ public class Node {
         map.put("y", location.getY());
         map.put("z", location.getZ());
         map.put("vis", vis);
-        System.out.println("saved vis="+vis);
         map.put("lastWorldTick", lastWorldTick);
         return map;
     }
@@ -53,6 +52,7 @@ public class Node {
             vis += diff/3;
             lastWorldTick = worldTick-diff%5;
         }
+        vis = Math.min(30000, vis);
         return vis;
     }
 
@@ -90,7 +90,7 @@ public class Node {
     public void tick() {
         int vis = getVis();
         int monsterChance = NodeManager.log2(vis+1);
-        spawnMonsters(25000, monsterChance*monsterChance);
+        spawnMonsters(20000, monsterChance*monsterChance);
     }
 
     private void spawnMonsters(int rnd, int min) {

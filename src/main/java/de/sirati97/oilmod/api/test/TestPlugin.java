@@ -5,13 +5,7 @@ import de.sirati97.oilmod.api.test.backpack.BackpackItem;
 import de.sirati97.oilmod.api.test.magic.ArrowWandItem;
 import de.sirati97.oilmod.api.test.magic.ReplaceWandItem;
 import de.sirati97.oilmod.api.test.magic.VisBottleItem;
-import de.sirati97.oilmod.api.test.magic2.ArrowWandforcyItem;
-import de.sirati97.oilmod.api.test.magic2.FlameBeamWandforcyItem;
-import de.sirati97.oilmod.api.test.magic2.LifestealBeamWandforcyItem;
-import de.sirati97.oilmod.api.test.magic2.OreMagnetWandforcyItem;
-import de.sirati97.oilmod.api.test.magic2.ReplaceWandforcyItem;
-import de.sirati97.oilmod.api.test.magic2.SniperWandforcyItem;
-import de.sirati97.oilmod.api.test.magic2.WandItem;
+import de.sirati97.oilmod.api.test.magic2.MagicUtil;
 import de.sirati97.oilmod.api.test.magic2.node.NodeManager;
 import de.sirati97.oilmod.api.test.ui.InvseeUIBuilder;
 import de.sirati97.oilmod.api.test.ui.TestUIBuilder;
@@ -60,13 +54,7 @@ public class TestPlugin extends JavaPlugin {
         itemRegistry.register(new VisBottleItem());
         itemRegistry.register(new ArrowWandItem());
         BackpackItem.registerBackpacks(itemRegistry);
-        itemRegistry.register(new WandItem());
-        itemRegistry.register(new ArrowWandforcyItem());
-        itemRegistry.register(new ReplaceWandforcyItem());
-        itemRegistry.register(new OreMagnetWandforcyItem());
-        itemRegistry.register(new FlameBeamWandforcyItem());
-        itemRegistry.register(new LifestealBeamWandforcyItem());
-        itemRegistry.register(new SniperWandforcyItem());
+        MagicUtil.register(itemRegistry);
         getCommand("invsee").setExecutor(new InvseeCommand());
     }
 

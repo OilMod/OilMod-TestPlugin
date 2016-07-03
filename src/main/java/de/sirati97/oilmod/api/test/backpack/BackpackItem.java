@@ -4,8 +4,9 @@ import de.sirati97.oilmod.api.items.ItemRegistry;
 import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilBukkitItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;
+import de.sirati97.oilmod.api.items.crafting.DataHolder;
 import de.sirati97.oilmod.api.items.crafting.ItemCraftingFactory;
-import de.sirati97.oilmod.api.items.crafting.ModItemOilCraftingIngredient;
+import de.sirati97.oilmod.api.items.crafting.ModItemClassOilCraftingIngredient;
 import de.sirati97.oilmod.api.items.crafting.OilCraftingRecipe;
 import de.sirati97.oilmod.api.items.crafting.OilCraftingResult;
 import de.sirati97.oilmod.api.items.crafting.OilItemOilCraftingResult;
@@ -80,14 +81,14 @@ public class BackpackItem extends OilItemBase<BackpackItemStack> {
         }
     }
 
-    private static class BackpackIncreaseSizeCraftingIngredient extends ModItemOilCraftingIngredient {
+    private static class BackpackIncreaseSizeCraftingIngredient extends ModItemClassOilCraftingIngredient {
 
         public BackpackIncreaseSizeCraftingIngredient() {
             super(BackpackItem.class);
         }
 
         @Override
-        public ItemStack getRandomExample(Random rnd) {
+        public ItemStack getRandomExample(Random rnd, DataHolder dataHolder) {
             ItemStack[] result = backpacks[rnd.nextInt(backpacks.length-1)].getNaturalExamples(); //Will ensure that all examples are valid as the biggest backpack cannot be enlarged
             return result[rnd.nextInt(result.length)];
         }

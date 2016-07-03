@@ -1,6 +1,6 @@
 package de.sirati97.oilmod.api.test.magic2.ui;
 
-import de.sirati97.oilmod.api.test.magic2.WandItemStack;
+import de.sirati97.oilmod.api.test.magic2.BasicWandItemStack;
 import de.sirati97.oilmod.api.userinterface.UIPanel;
 import de.sirati97.oilmod.api.userinterface.UserInterfaceBuilder;
 import de.sirati97.oilmod.api.userinterface.internal.UserInterface;
@@ -11,18 +11,18 @@ import org.bukkit.entity.Player;
 /**
  * Created by sirati97 on 26.06.2016 for OilMod-TestPlugin.
  */
-public class WandUIBuilder extends UserInterfaceBuilder<WandItemStack> {
+public class WandUIBuilder extends UserInterfaceBuilder<BasicWandItemStack> {
     public final static WandUIBuilder INSTANCE = new WandUIBuilder();
 
     private WandUIBuilder(){}
 
     @Override
-    public void displayNewUI(Player player, WandItemStack wandItemStack) {
+    public void displayNewUI(Player player, BasicWandItemStack wandItemStack) {
         super.displayNewUI(player, wandItemStack);
     }
 
     @Override
-    protected UserInterface buildDisplay(Player player, WandItemStack wandItemStack, UserInterfaceFactory factory) {
+    protected UserInterface buildDisplay(Player player, BasicWandItemStack wandItemStack, UserInterfaceFactory factory) {
         int rows = 4+(wandItemStack.getWandforcyContainer().getBukkitInventory().getSize()+8)/9;
         UserInterface ui = factory.createChestInterface(player, this, ChatColor.stripColor(wandItemStack.getCurrentDisplayName()), rows);
         UIPanel playerPanel = ui.createPlayerPanel(true, false, false, true);
