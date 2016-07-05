@@ -39,13 +39,13 @@ public class ItemMagnetWandforcyItemStack extends BeamWandforcyItemStackBase<Ite
 
     @Override
     protected boolean isGoalCriteria(Player player, Material mat, Block block, Location location, Vector vector) {
-        lastItems = OilUtil.getNearbyEntities(location, 0.5, Item.class);
+        lastItems = OilUtil.getNearbyEntities(location, 0.4, Item.class);
         return lastItems.size()>0;
     }
 
     @Override
     protected int getTries() {
-        return 5;
+        return 10;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class ItemMagnetWandforcyItemStack extends BeamWandforcyItemStackBase<Ite
 
     @Override
     protected double getMaxDistance(Wand wand) {
-        return 29;
+        return 20;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class ItemMagnetWandforcyItemStack extends BeamWandforcyItemStackBase<Ite
 
     @Override
     protected int getNormalDiversionDivisor() {
-        return 7;
+        return 14;
     }
 
     @Override
@@ -81,12 +81,12 @@ public class ItemMagnetWandforcyItemStack extends BeamWandforcyItemStackBase<Ite
 
     @Override
     protected void onGoal(Wand wand, Player player, Location eyes, Location goal, Block goalBlock) {
-        Location playerLoc = player.getLocation();
         for (Item item:lastItems) {
             Location itemLoc = item.getLocation();
-            double distSquared = playerLoc.distanceSquared(itemLoc);
-            Vector v = itemLoc.subtract(player.getLocation()).toVector().normalize().multiply(0.5);
-            if (distSquared < 9) {
+            double distSquared = eyes.distanceSquared(itemLoc);
+            Vector v = itemLoc.subtract(player.getLocation()).toVector().normalize().multiply(-0.8);
+            v.setY(0.3f);
+            if (distSquared < 25) {
                 v.multiply(0.5);
             }
             item.setVelocity(v);
