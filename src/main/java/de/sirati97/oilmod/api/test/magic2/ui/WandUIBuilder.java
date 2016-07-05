@@ -23,7 +23,7 @@ public class WandUIBuilder extends UserInterfaceBuilder<BasicWandItemStack> {
 
     @Override
     protected UserInterface buildDisplay(Player player, BasicWandItemStack wandItemStack, UserInterfaceFactory factory) {
-        int rows = 4+(wandItemStack.getWandforcyContainer().getBukkitInventory().getSize()+8)/9;
+        int rows = 3;
         UserInterface ui = factory.createChestInterface(player, this, ChatColor.stripColor(wandItemStack.getCurrentDisplayName()), rows);
         UIPanel playerPanel = ui.createPlayerPanel(true, false, false, true);
         WandUIPanel wandUIPanel = new WandUIPanel(9, rows, wandItemStack);

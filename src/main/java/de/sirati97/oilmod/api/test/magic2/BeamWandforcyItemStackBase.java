@@ -41,13 +41,13 @@ public abstract class BeamWandforcyItemStackBase<T extends BeamWandforcyItemStac
                     Block b = tempLoc.getBlock();
                     Material mat = b.getType();
                     while (tempLoc.getY() > 0 && dist < maxDist) {
-                        if (isStopCriteria(mat, b, tempLoc, v)) {
+                        if (isStopCriteria(player, mat, b, tempLoc, v)) {
                             continue round;
                         }
                         if (!mat.isSolid()) {
                             displayParticles(world, tempLoc, v);
                         }
-                        if (dist > minDist && isGoalCriteria(mat, b, tempLoc, v)) {
+                        if (dist > minDist && isGoalCriteria(player, mat, b, tempLoc, v)) {
                             onGoal(wand, player, eyes, tempLoc, b);
                             continue round;
                         }
@@ -65,8 +65,8 @@ public abstract class BeamWandforcyItemStackBase<T extends BeamWandforcyItemStac
         }
     }
 
-    protected abstract boolean isStopCriteria(Material mat, Block block, Location location, Vector vector);
-    protected abstract boolean isGoalCriteria(Material mat, Block block, Location location, Vector vector);
+    protected abstract boolean isStopCriteria(Player player, Material mat, Block block, Location location, Vector vector);
+    protected abstract boolean isGoalCriteria(Player player, Material mat, Block block, Location location, Vector vector);
     protected abstract int getTries();
     protected abstract int getMinVisUsage();
     protected abstract int getMaxTryVisUsage();

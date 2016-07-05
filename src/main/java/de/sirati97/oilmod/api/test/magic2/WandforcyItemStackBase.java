@@ -31,7 +31,8 @@ public abstract class WandforcyItemStackBase<T extends WandforcyItemStackBase<T>
     }
 
     @Override
-    public void onWandUse(Wand wand, Player player, Action action) {
+    public boolean onWandLeftClickOnBlock(Wand wand, Player player, Action action, Block blockClicked, BlockFace blockFace) {
+        return false;
     }
 
     @Override
@@ -39,13 +40,28 @@ public abstract class WandforcyItemStackBase<T extends WandforcyItemStackBase<T>
     }
 
     @Override
-    public boolean onWandLeftClickOnBlock(Wand wand, Player player, Action action, Block blockClicked, BlockFace blockFace) {
-        return false;
+    public boolean onUse(Player player, Action action) {
+        for (int i = 0; i < 9; i++) {
+            ItemStack itemStack = player.getInventory().getItem(i);
+            if (itemStack instanceof OilBukkitItemStack && ((OilBukkitItemStack) itemStack).getOilItemStack() instanceof Wand) {
+                Wand wand = (Wand) ((OilBukkitItemStack) itemStack).getOilItemStack();
+                if (wand.getWandforcy()==null) {
+                    wand.setWandforcy(this);
+                    player.getInventory().remove(asBukkitItemStack());
+                    player.sendMessage("Inserted Wandforcy into §a" + wand.getCurrentDisplayName());
+                    return true;
+                }
+
+            }
+        }
+        player.sendMessage("Cannot find empty wand in hotbar.");
+        return true;
     }
 
+
     @Override
-    public boolean onUse(Player player, Action action) {
-        return true;
+    public ItemStack asItemStack() {
+        return asBukkitItemStack();
     }
 
     @Override

@@ -31,13 +31,14 @@ public abstract class WeaponBeamWandforcyItemStackBase<T extends WeaponBeamWandf
     }
 
     @Override
-    protected boolean isStopCriteria(Material mat, Block block, Location location, Vector vector) {
+    protected boolean isStopCriteria(Player player, Material mat, Block block, Location location, Vector vector) {
         return mat.isSolid();
     }
 
     @Override
-    protected boolean isGoalCriteria(Material mat, Block block, Location location, Vector vector) {
+    protected boolean isGoalCriteria(Player player, Material mat, Block block, Location location, Vector vector) {
         lastEntities = OilUtil.getNearbyEntities(location, 0.5, LivingEntity.class);
+        lastEntities.remove(player);
         return lastEntities.size()>0;
     }
 

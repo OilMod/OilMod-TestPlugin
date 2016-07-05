@@ -17,7 +17,7 @@ import java.util.List;
  * Created by sirati97 on 27.06.2016 for OilMod-TestPlugin.
  */
 public class LifestealBeamWandforcyItemStack extends WeaponBeamWandforcyItemStackBase<LifestealBeamWandforcyItemStack> {
-    private static final ParticleSpawnData FLAME_PARTICLES = new ParticleSpawnData(Effect.MAGIC_CRIT);
+    private static final ParticleSpawnData CRIT_PARTICLES = new ParticleSpawnData(Effect.MAGIC_CRIT);
 
     public LifestealBeamWandforcyItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
         super(nmsItemStack, item);
@@ -35,7 +35,7 @@ public class LifestealBeamWandforcyItemStack extends WeaponBeamWandforcyItemStac
 
     @Override
     protected ParticleSpawnData getSecondaryParticles() {
-        return FLAME_PARTICLES;
+        return CRIT_PARTICLES;
     }
 
     @Override

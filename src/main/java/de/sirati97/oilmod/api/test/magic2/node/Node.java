@@ -71,7 +71,10 @@ public class Node {
     }
 
     public boolean stealVis(int visStolen) {
-        spawnMonsters(80+2*visStolen, visStolen);
+        int turns = NodeManager.roundUp(TestPlugin.rnd.nextInt(visStolen),20);
+        for (int i = 0; i < turns; i++) {
+            spawnMonsters(20, 1);
+        }
         return useVis(visStolen);
     }
 
@@ -82,7 +85,7 @@ public class Node {
     public void display() {
         int vis = getVis();
         float root = (float) Math.sqrt(vis);
-        float size = Math.min(root/1000*((float)Math.log1p(vis)),0.3f);
+        float size = vis/95000f;
         OilUtil.spawnParticleCloud(location, SMALL_SMOKE_PARTICLE, size, size, size, (int) root);
     }
 

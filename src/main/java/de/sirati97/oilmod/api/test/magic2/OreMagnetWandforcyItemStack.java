@@ -30,7 +30,7 @@ public class OreMagnetWandforcyItemStack extends BeamWandforcyItemStackBase<OreM
     }
 
     @Override
-    protected boolean isStopCriteria(Material mat, Block block, Location location, Vector vector) {
+    protected boolean isStopCriteria(Player player, Material mat, Block block, Location location, Vector vector) {
         return isStopBlock(mat);
     }
 
@@ -39,7 +39,7 @@ public class OreMagnetWandforcyItemStack extends BeamWandforcyItemStackBase<OreM
     }
 
     @Override
-    protected boolean isGoalCriteria(Material mat, Block block, Location location, Vector vector) {
+    protected boolean isGoalCriteria(Player player, Material mat, Block block, Location location, Vector vector) {
         return isOre(mat);
     }
 

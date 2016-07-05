@@ -6,4 +6,7 @@ package de.sirati97.oilmod.api.test.magic2;
 public interface Wand {
     void useVis(int amount);
     boolean checkVis(int amount);
+    Wandforcy getWandforcy();
+    void setWandforcy(Wandforcy wandforcy);
+    String getCurrentDisplayName();
 }

@@ -2,6 +2,7 @@ package de.sirati97.oilmod.api.test.magic2;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilItemBase;
+import de.sirati97.oilmod.api.test.TestPlugin;
 import de.sirati97.oilmod.api.util.OilUtil;
 import de.sirati97.oilmod.api.util.ParticleSpawnData;
 import org.bukkit.Effect;
@@ -13,26 +14,26 @@ import java.util.List;
 /**
  * Created by sirati97 on 27.06.2016 for OilMod-TestPlugin.
  */
-public class FlameBeamWandforcyItemStack extends WeaponBeamWandforcyItemStackBase<FlameBeamWandforcyItemStack> {
-    private static final ParticleSpawnData FLAME_PARTICLES = new ParticleSpawnData(Effect.FLAME);
+public class DamageBeamWandforcyItemStack extends WeaponBeamWandforcyItemStackBase<DamageBeamWandforcyItemStack> {
+    private static final ParticleSpawnData FIREWORKS_PARTICLES = new ParticleSpawnData(Effect.FIREWORKS_SPARK);
 
-    public FlameBeamWandforcyItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public DamageBeamWandforcyItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
         super(nmsItemStack, item);
     }
 
     @Override
     protected int getMinVisUsage() {
-        return 1;
-    }
-
-    @Override
-    protected int getMaxTryVisUsage() {
         return 2;
     }
 
     @Override
+    protected int getMaxTryVisUsage() {
+        return 3;
+    }
+
+    @Override
     protected ParticleSpawnData getSecondaryParticles() {
-        return FLAME_PARTICLES;
+        return FIREWORKS_PARTICLES;
     }
 
     @Override
@@ -42,25 +43,22 @@ public class FlameBeamWandforcyItemStack extends WeaponBeamWandforcyItemStackBas
 
     @Override
     protected void hit(Wand wand, Player player, LivingEntity entity, int index) {
-        int oldFireTicks = entity.getFireTicks();
-        oldFireTicks = oldFireTicks<0?0:oldFireTicks;
-        if (oldFireTicks<40 && wand.checkVis((80-oldFireTicks)/40)) {
-            if (oldFireTicks<=0) {
-                OilUtil.setLastDamager(entity, player);
+        if (!entity.isInvulnerable() && wand.checkVis(3)) {
+            boolean damaged = OilUtil.damageEntity(entity, 3, TestPlugin.rnd.nextInt(4)==0?player:null); //stop armor from getting damaged
+            if (damaged) {
+                wand.useVis(3);
             }
-            entity.setFireTicks(80);
-            wand.useVis((80-oldFireTicks)/40);
         }
-    }
-
-    @Override
-    protected int getAfterHitCooldownMs() {
-        return 500;
     }
 
 
     @Override
     protected boolean checkClass(WandforcyItemStackBase itemStack) {
-        return itemStack instanceof FlameBeamWandforcyItemStack;
+        return itemStack instanceof DamageBeamWandforcyItemStack;
+    }
+
+    @Override
+    protected int getAfterHitCooldownMs() {
+        return 1300;
     }
 }

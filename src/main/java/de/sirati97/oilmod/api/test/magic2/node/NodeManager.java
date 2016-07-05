@@ -210,8 +210,8 @@ public class NodeManager implements Listener {
             public void run() {
                 displayActiveNodes();
             }
-        },10,10);
-        nodeUpdater = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
+        },15,15);
+        nodeAttack = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
             @Override
             public void run() {
                 tickActiveNodes();
