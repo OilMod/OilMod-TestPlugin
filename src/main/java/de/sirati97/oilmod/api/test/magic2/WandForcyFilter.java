@@ -2,6 +2,7 @@ package de.sirati97.oilmod.api.test.magic2;
 
 import de.sirati97.oilmod.api.inventory.ItemFilter;
 import de.sirati97.oilmod.api.items.OilBukkitItemStack;
+import de.sirati97.oilmod.api.test.magic2.wandforcy.WandforcyItemStackBase;
 import org.bukkit.inventory.ItemStack;
 
 /**

@@ -24,4 +24,6 @@ public interface Wandforcy {
     ItemStack asItemStack();
 
     String getCurrentDisplayName();
+
+    String getSpellName();
 }

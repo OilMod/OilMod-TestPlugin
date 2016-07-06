@@ -1,8 +1,8 @@
-package de.sirati97.oilmod.api.test.magic2;
+package de.sirati97.oilmod.api.test.magic2.wandforcy;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
-import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.test.TestPlugin;
+import de.sirati97.oilmod.api.test.magic2.Wand;
 import de.sirati97.oilmod.api.userinterface.UIPanel;
 import de.sirati97.oilmod.api.util.OilUtil;
 import de.sirati97.oilmod.api.util.ParticleSpawnData;
@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class OreMagnetWandforcyItemStack extends BeamWandforcyItemStackBase<OreMagnetWandforcyItemStack> {
     private static final ParticleSpawnData SMOKE_PARTICLES = new ParticleSpawnData(Effect.SMALL_SMOKE);
-    public OreMagnetWandforcyItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public OreMagnetWandforcyItemStack(NMSItemStack nmsItemStack, WandforcyItemBase item) {
         super(nmsItemStack, item);
     }
 

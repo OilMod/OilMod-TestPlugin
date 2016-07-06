@@ -1,7 +1,7 @@
-package de.sirati97.oilmod.api.test.magic2;
+package de.sirati97.oilmod.api.test.magic2.wandforcy;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
-import de.sirati97.oilmod.api.items.OilItemBase;
+import de.sirati97.oilmod.api.test.magic2.Wand;
 import de.sirati97.oilmod.api.util.OilUtil;
 import de.sirati97.oilmod.api.util.ParticleSpawnData;
 import org.bukkit.Effect;
@@ -16,7 +16,7 @@ import java.util.List;
 public class FlameBeamWandforcyItemStack extends WeaponBeamWandforcyItemStackBase<FlameBeamWandforcyItemStack> {
     private static final ParticleSpawnData FLAME_PARTICLES = new ParticleSpawnData(Effect.FLAME);
 
-    public FlameBeamWandforcyItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public FlameBeamWandforcyItemStack(NMSItemStack nmsItemStack, WandforcyItemBase item) {
         super(nmsItemStack, item);
     }
 

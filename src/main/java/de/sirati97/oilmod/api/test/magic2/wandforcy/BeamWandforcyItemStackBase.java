@@ -1,8 +1,8 @@
-package de.sirati97.oilmod.api.test.magic2;
+package de.sirati97.oilmod.api.test.magic2.wandforcy;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
-import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.test.TestPlugin;
+import de.sirati97.oilmod.api.test.magic2.Wand;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -15,7 +15,7 @@ import org.bukkit.util.Vector;
  * Created by sirati97 on 27.06.2016 for OilMod-TestPlugin.
  */
 public abstract class BeamWandforcyItemStackBase<T extends BeamWandforcyItemStackBase<T>> extends WandforcyItemStackBase<T> {
-    public BeamWandforcyItemStackBase(NMSItemStack nmsItemStack, OilItemBase item) {
+    public BeamWandforcyItemStackBase(NMSItemStack nmsItemStack, WandforcyItemBase item) {
         super(nmsItemStack, item);
     }
 

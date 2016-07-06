@@ -1,8 +1,8 @@
-package de.sirati97.oilmod.api.test.magic2;
+package de.sirati97.oilmod.api.test.magic2.wandforcy;
 
 import de.sirati97.oilmod.api.data.LongData;
 import de.sirati97.oilmod.api.items.NMSItemStack;
-import de.sirati97.oilmod.api.items.OilItemBase;
+import de.sirati97.oilmod.api.test.magic2.Wand;
 import de.sirati97.oilmod.api.userinterface.UIPanel;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
@@ -15,7 +15,7 @@ import org.bukkit.event.block.Action;
 public class ArrowWandforcyItemStack extends WandforcyItemStackBase<ArrowWandforcyItemStack> {
     protected final LongData lastShot = new LongData("lastShot", this);
 
-    public ArrowWandforcyItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public ArrowWandforcyItemStack(NMSItemStack nmsItemStack, WandforcyItemBase item) {
         super(nmsItemStack, item);
     }
 

@@ -2,12 +2,8 @@ package de.sirati97.oilmod.api.test;
 
 import de.sirati97.oilmod.api.items.ItemRegistry;
 import de.sirati97.oilmod.api.test.backpack.BackpackItem;
-import de.sirati97.oilmod.api.test.magic.ArrowWandItem;
-import de.sirati97.oilmod.api.test.magic.ReplaceWandItem;
-import de.sirati97.oilmod.api.test.magic.VisBottleItem;
 import de.sirati97.oilmod.api.test.magic2.MagicUtil;
 import de.sirati97.oilmod.api.test.magic2.node.NodeManager;
-import de.sirati97.oilmod.api.test.ui.InvseeUIBuilder;
 import de.sirati97.oilmod.api.test.ui.TestUIBuilder;
 import de.sirati97.oilmod.api.util.WeakReferenceTicker;
 import org.bukkit.Bukkit;
@@ -31,13 +27,11 @@ public class TestPlugin extends JavaPlugin {
     public static final Random rnd = new Random();
     private ItemRegistry itemRegistry;
     private TestItem testItem;
-    private BackpackItem backpackItem;
     private FurnacePowderItem furnacePowderItem;
     private CraftingBackpackItem craftingBackpackItem;
     private WeakReferenceTicker ticker;
     private static TestPlugin instance;
     private TestUIBuilder testUIBuilder = new TestUIBuilder();
-    private InvseeUIBuilder invseeUIBuilder = new InvseeUIBuilder();
     private NodeManager nodeManager;
 
     @Override
@@ -50,9 +44,6 @@ public class TestPlugin extends JavaPlugin {
         itemRegistry.register(testItem = new TestItem());
         itemRegistry.register(furnacePowderItem = new FurnacePowderItem());
         itemRegistry.register(craftingBackpackItem = new CraftingBackpackItem());
-        itemRegistry.register(new ReplaceWandItem());
-        itemRegistry.register(new VisBottleItem());
-        itemRegistry.register(new ArrowWandItem());
         BackpackItem.registerBackpacks(itemRegistry);
         MagicUtil.register(itemRegistry);
         getCommand("invsee").setExecutor(new InvseeCommand());
@@ -73,9 +64,6 @@ public class TestPlugin extends JavaPlugin {
                         ItemStack item = testItem.createItemStack(player, 1);
                         player.getInventory().addItem(item);
                     }
-                } else if (args[0].equalsIgnoreCase("backpack")) {
-                    ItemStack item = backpackItem.createItemStack(player, 1);
-                    player.getInventory().addItem(item);
                 } else if (args[0].equalsIgnoreCase("oven")) {
                     ItemStack item = furnacePowderItem.createItemStack(player, 1);
                     player.getInventory().addItem(item);

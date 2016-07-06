@@ -1,6 +1,6 @@
 package de.sirati97.oilmod.api.test.magic2.ui;
 
-import de.sirati97.oilmod.api.test.magic2.BasicWandItemStack;
+import de.sirati97.oilmod.api.test.magic2.WandItemStackBase;
 import de.sirati97.oilmod.api.test.magic2.Wandforcy;
 import de.sirati97.oilmod.api.userinterface.IInteractableUIElement;
 import de.sirati97.oilmod.api.userinterface.SingleStackInteractableUIElement;
@@ -13,14 +13,14 @@ import de.sirati97.oilmod.api.userinterface.UIPanel;
  * Created by sirati97 on 26.06.2016 for OilMod-TestPlugin.
  */
 public class WandUIPanel extends UIFormedPanel {
-    private final BasicWandItemStack wandItemStack;
+    private final WandItemStackBase wandItemStack;
 //    private final IInteractableUIElement visElement;
 //    private final IInteractableUIElement wandforcyElement;
     private final IInteractableUIElement activeElement;
 
 
 
-    public WandUIPanel(int width, int height, BasicWandItemStack wandItemStack) {
+    public WandUIPanel(int width, int height, WandItemStackBase wandItemStack) {
         super(width, height);
         this.wandItemStack = wandItemStack;
 //        this.visElement = wandItemStack.getVisContainer().createUIElement();

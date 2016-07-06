@@ -1,8 +1,8 @@
-package de.sirati97.oilmod.api.test.magic2;
+package de.sirati97.oilmod.api.test.magic2.wandforcy;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
-import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.test.TestPlugin;
+import de.sirati97.oilmod.api.test.magic2.Wand;
 import de.sirati97.oilmod.api.util.OilUtil;
 import de.sirati97.oilmod.api.util.ParticleSpawnData;
 import org.bukkit.Effect;
@@ -19,7 +19,7 @@ import java.util.List;
 public class LifestealBeamWandforcyItemStack extends WeaponBeamWandforcyItemStackBase<LifestealBeamWandforcyItemStack> {
     private static final ParticleSpawnData CRIT_PARTICLES = new ParticleSpawnData(Effect.MAGIC_CRIT);
 
-    public LifestealBeamWandforcyItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public LifestealBeamWandforcyItemStack(NMSItemStack nmsItemStack, WandforcyItemBase item) {
         super(nmsItemStack, item);
     }
 

@@ -1,7 +1,7 @@
-package de.sirati97.oilmod.api.test.magic2;
+package de.sirati97.oilmod.api.test.magic2.wandforcy;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
-import de.sirati97.oilmod.api.items.OilItemBase;
+import de.sirati97.oilmod.api.test.magic2.Wand;
 import de.sirati97.oilmod.api.util.OilUtil;
 import de.sirati97.oilmod.api.util.ParticleSpawnData;
 import org.bukkit.Sound;
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by sirati97 on 28.06.2016 for OilMod-TestPlugin.
  */
 public class SniperWandforcyItemStack extends WeaponBeamWandforcyItemStackBase<SniperWandforcyItemStack> {
-    public SniperWandforcyItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public SniperWandforcyItemStack(NMSItemStack nmsItemStack, WandforcyItemBase item) {
         super(nmsItemStack, item);
     }
 

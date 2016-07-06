@@ -1,11 +1,11 @@
-package de.sirati97.oilmod.api.test.magic2;
+package de.sirati97.oilmod.api.test.magic2.wandforcy;
 
 import de.sirati97.oilmod.api.inventory.InventoryFactoryBase;
 import de.sirati97.oilmod.api.inventory.ModInventoryObject;
 import de.sirati97.oilmod.api.items.NMSItemStack;
-import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.test.BlockFilter;
 import de.sirati97.oilmod.api.test.TestPlugin;
+import de.sirati97.oilmod.api.test.magic2.Wand;
 import de.sirati97.oilmod.api.userinterface.UIOilInventoryPanel;
 import de.sirati97.oilmod.api.userinterface.UIPanel;
 import de.sirati97.oilmod.api.util.OilUtil;
@@ -36,7 +36,7 @@ public class ReplaceWandforcyItemStack extends WandforcyItemStackBase<ReplaceWan
     private ModInventoryObject blockContainer = InventoryFactoryBase.getInstance().createBasicInventory("blockCon", this, 18, "Block Container", BlockFilter.INSTANCE, true);
     private UIPanel uiPanel;
 
-    public ReplaceWandforcyItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public ReplaceWandforcyItemStack(NMSItemStack nmsItemStack, WandforcyItemBase item) {
         super(nmsItemStack, item);
     }
 

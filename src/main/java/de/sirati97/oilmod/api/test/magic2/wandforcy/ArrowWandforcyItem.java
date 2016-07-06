@@ -1,22 +1,18 @@
-package de.sirati97.oilmod.api.test.magic2;
+package de.sirati97.oilmod.api.test.magic2.wandforcy;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
-import de.sirati97.oilmod.api.items.OilItemBase;
-import de.sirati97.oilmod.api.items.OilItemStack;
-import de.sirati97.oilmod.api.test.magic.ArrowWandItemStack;
-import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 
 /**
  * Created by sirati97 on 11.03.2016.
  */
-public class ArrowWandforcyItem extends OilItemBase {
+public class ArrowWandforcyItem extends WandforcyItemBase<ArrowWandforcyItemStack> {
     public ArrowWandforcyItem() {
-        super(Material.FIREWORK_CHARGE, 0, "ArrowWandforcy", 1, "Arrow Wandforcy");
+        super("ArrowWandforcy", "Arrow");
     }
 
     @Override
-    public OilItemStack createOilItemStackInstance(NMSItemStack nmsItemStack) {
+    public ArrowWandforcyItemStack createOilItemStackInstance(NMSItemStack nmsItemStack) {
         return new ArrowWandforcyItemStack(nmsItemStack, this);
     }
 

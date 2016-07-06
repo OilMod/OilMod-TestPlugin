@@ -1,9 +1,10 @@
-package de.sirati97.oilmod.api.test.magic2;
+package de.sirati97.oilmod.api.test.magic2.wandforcy;
 
 import de.sirati97.oilmod.api.items.NMSItemStack;
 import de.sirati97.oilmod.api.items.OilBukkitItemStack;
-import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.items.OilItemStack;
+import de.sirati97.oilmod.api.test.magic2.Wand;
+import de.sirati97.oilmod.api.test.magic2.Wandforcy;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.HumanEntity;
@@ -21,7 +22,7 @@ import static de.sirati97.oilmod.api.test.InventoryUtil.dropAll;
  */
 public abstract class WandforcyItemStackBase<T extends WandforcyItemStackBase<T>> extends OilItemStack implements Wandforcy {
 
-    public WandforcyItemStackBase(NMSItemStack nmsItemStack, OilItemBase item) {
+    public WandforcyItemStackBase(NMSItemStack nmsItemStack, WandforcyItemBase item) {
         super(nmsItemStack, item);
     }
 
@@ -48,10 +49,9 @@ public abstract class WandforcyItemStackBase<T extends WandforcyItemStackBase<T>
                 if (wand.getWandforcy()==null) {
                     wand.setWandforcy(this);
                     player.getInventory().remove(asBukkitItemStack());
-                    player.sendMessage("Inserted Wandforcy into §a" + wand.getCurrentDisplayName());
+                    player.sendMessage("Inserted " + getCurrentDisplayName() + " into §a" + wand.getCurrentDisplayName());
                     return true;
                 }
-
             }
         }
         player.sendMessage("Cannot find empty wand in hotbar.");
@@ -90,4 +90,13 @@ public abstract class WandforcyItemStackBase<T extends WandforcyItemStackBase<T>
         return new ArrayList<>();
     }
 
+    @Override
+    public WandforcyItemBase getItem() {
+        return (WandforcyItemBase) super.getItem();
+    }
+
+    @Override
+    public String getSpellName() {
+        return getItem().getWandforcyName();
+    }
 }

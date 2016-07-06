@@ -1,9 +1,9 @@
-package de.sirati97.oilmod.api.test.magic2;
+package de.sirati97.oilmod.api.test.magic2.wandforcy;
 
 import de.sirati97.oilmod.api.data.LongData;
 import de.sirati97.oilmod.api.items.NMSItemStack;
-import de.sirati97.oilmod.api.items.OilItemBase;
 import de.sirati97.oilmod.api.test.TestPlugin;
+import de.sirati97.oilmod.api.test.magic2.Wand;
 import de.sirati97.oilmod.api.userinterface.UIPanel;
 import de.sirati97.oilmod.api.util.OilUtil;
 import de.sirati97.oilmod.api.util.ParticleSpawnData;
@@ -26,7 +26,7 @@ public abstract class WeaponBeamWandforcyItemStackBase<T extends WeaponBeamWandf
     private List<LivingEntity> lastEntities;
     private final LongData lastUse = new LongData("lastUse", this);
 
-    public WeaponBeamWandforcyItemStackBase(NMSItemStack nmsItemStack, OilItemBase item) {
+    public WeaponBeamWandforcyItemStackBase(NMSItemStack nmsItemStack, WandforcyItemBase item) {
         super(nmsItemStack, item);
     }
 
