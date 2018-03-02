@@ -9,7 +9,7 @@ import org.oilmod.api.items.crafting.ItemCraftingFactory;
 import org.oilmod.api.items.crafting.OilModItemClassIngredient;
 import org.oilmod.api.items.crafting.OilCraftingRecipe;
 import org.oilmod.api.items.crafting.OilCraftingResult;
-import org.oilmod.api.items.crafting.OilItemOilCraftingResult;
+import org.oilmod.api.items.crafting.OilItemCraftingResult;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -108,11 +108,11 @@ public class BackpackItem extends OilItemBase<BackpackItemStack> {
         }
         //Add crafting recipes
         OilCraftingRecipe recipe;
-        recipe = ItemCraftingFactory.createShapedRecipe(2,3, new OilItemOilCraftingResult(shoulderStrapsItem, 4), Material.STRING, Material.LEATHER, null, Material.LEATHER, Material.IRON_INGOT, Material.LEATHER);
+        recipe = ItemCraftingFactory.createShapedRecipe(2,3, new OilItemCraftingResult(shoulderStrapsItem, 4), Material.STRING, Material.LEATHER, null, Material.LEATHER, Material.IRON_INGOT, Material.LEATHER);
         ItemCraftingFactory.registerGlobal(recipe);
-        recipe = ItemCraftingFactory.createShapedRecipe(3,3, new OilItemOilCraftingResult(sackItem, 1), Material.PAPER, Material.PAPER, Material.PAPER, Material.LEATHER, Material.STICK, Material.LEATHER, Material.STRING, Material.LEATHER, Material.STRING);
+        recipe = ItemCraftingFactory.createShapedRecipe(3,3, new OilItemCraftingResult(sackItem, 1), Material.PAPER, Material.PAPER, Material.PAPER, Material.LEATHER, Material.STICK, Material.LEATHER, Material.STRING, Material.LEATHER, Material.STRING);
         ItemCraftingFactory.registerGlobal(recipe);
-        recipe = ItemCraftingFactory.createShapedRecipe(2,2, new OilItemOilCraftingResult(backpacks[0], 1), BackpackSackItem.class, BackpackShoulderStrapsItem.class, Material.SLIME_BALL, BackpackShoulderStrapsItem.class);
+        recipe = ItemCraftingFactory.createShapedRecipe(2,2, new OilItemCraftingResult(backpacks[0], 1), BackpackSackItem.class, BackpackShoulderStrapsItem.class, Material.SLIME_BALL, BackpackShoulderStrapsItem.class);
         ItemCraftingFactory.registerGlobal(recipe);
         recipe = ItemCraftingFactory.createShapelessRecipe(new BackpackIncreaseSizeCraftingResult(), new BackpackIncreaseSizeIngredient(), BackpackSackItem.class, Material.LEATHER, Material.PAPER);
         ItemCraftingFactory.registerGlobal(recipe);
