@@ -11,7 +11,7 @@ import org.bukkit.event.block.Action;
  */
 public class VisContainerItem extends OilItemBase {
     public VisContainerItem() {
-        super(Material.END_CRYSTAL, 0, "VisContainer", "Vis Container");
+        super("VisContainer", Material.END_CRYSTAL, 0, "Vis Container");
     }
 
     @Override

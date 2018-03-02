@@ -11,7 +11,7 @@ import org.bukkit.event.block.Action;
  */
 public class BackpackSackItem extends OilItemBase {
     public BackpackSackItem() {
-        super(Material.BOAT, 0, "BackpackSack", 64, "Backpack Sack");//defines Backpack Sack item
+        super("BackpackSack", Material.BOAT, 0, 64, "Backpack Sack");//defines Backpack Sack item
     }
 
     @Override

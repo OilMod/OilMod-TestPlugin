@@ -22,7 +22,7 @@ public class BackpackItem extends OilItemBase<BackpackItemStack> {
     private final int rows;
 
     public BackpackItem(int rowsIndex) {
-        super(Material.LEATHER, 0, names[rowsIndex].replace(" ","")+"Backpack", 1, names[rowsIndex] + " Backpack"); //defines Backpack item
+        super(names[rowsIndex].replace(" ","")+"Backpack", Material.LEATHER, 0, 1, names[rowsIndex] + " Backpack"); //defines Backpack item
         this.rows = rowsIndex+1;
     }
 

@@ -13,7 +13,7 @@ import org.bukkit.event.block.Action;
 public class CoffinItem extends OilItemBase<CoffinItemStack>{
 
     public CoffinItem() {
-        super(Material.ENDER_CHEST, 0, "Coffin", 64, "Coffin");
+        super("Coffin", Material.ENDER_CHEST, 0, 64, "Coffin");
     }
 
     @Override

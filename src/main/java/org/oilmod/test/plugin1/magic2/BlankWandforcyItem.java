@@ -8,6 +8,6 @@ import org.bukkit.Material;
  */
 public class BlankWandforcyItem extends OilItemBase{
     public BlankWandforcyItem() {
-        super(Material.FIREWORK_CHARGE, 0, "BlankWandforcy", "Blank Wandforcy");
+        super("BlankWandforcy", Material.FIREWORK_CHARGE, 0, "Blank Wandforcy");
     }
 }

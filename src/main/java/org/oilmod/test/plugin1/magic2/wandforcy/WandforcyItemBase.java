@@ -11,7 +11,7 @@ public abstract class WandforcyItemBase<T extends OilItemStack> extends OilItemB
     private final String wandforcyName;
 
     public WandforcyItemBase(String itemIdentifier, String wandforcyName) {
-        super(Material.FIREWORK_CHARGE, 0, itemIdentifier, 1, wandforcyName + " Wandforcy");
+        super(itemIdentifier, Material.FIREWORK_CHARGE, 0, 1, wandforcyName + " Wandforcy");
         this.wandforcyName = wandforcyName;
     }
 

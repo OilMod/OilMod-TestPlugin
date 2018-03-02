@@ -13,7 +13,7 @@ import org.bukkit.event.block.Action;
  */
 public class TestItem extends OilItemBase {
     public TestItem() {
-        super(Material.STICK, 0, "TestItem", 2, "TestItem");
+        super("TestItem", Material.STICK, 0, 2, "TestItem");
     }
 
     @Override

@@ -11,7 +11,7 @@ import org.bukkit.event.block.Action;
  */
 public class BackpackShoulderStrapsItem extends OilItemBase {
     public BackpackShoulderStrapsItem() {
-        super(Material.EMPTY_MAP, 0, "BackpackShoulderStraps", 64, "Backpack Shoulder Straps");//defines Backpack Shoulder Strap item
+        super("BackpackShoulderStraps", Material.EMPTY_MAP, 0, 64, "Backpack Shoulder Straps");//defines Backpack Shoulder Strap item
     }
 
     @Override
