@@ -6,7 +6,7 @@ import org.oilmod.api.items.OilBukkitItemStack;
 import org.oilmod.api.items.OilItemBase;
 import org.oilmod.api.items.crafting.DataHolder;
 import org.oilmod.api.items.crafting.ItemCraftingFactory;
-import org.oilmod.api.items.crafting.ModItemClassOilCraftingIngredient;
+import org.oilmod.api.items.crafting.OilModItemClassIngredient;
 import org.oilmod.api.items.crafting.OilCraftingRecipe;
 import org.oilmod.api.items.crafting.OilCraftingResult;
 import org.oilmod.api.items.crafting.OilItemOilCraftingResult;
@@ -81,9 +81,9 @@ public class BackpackItem extends OilItemBase<BackpackItemStack> {
         }
     }
 
-    private static class BackpackIncreaseSizeCraftingIngredient extends ModItemClassOilCraftingIngredient {
+    private static class BackpackIncreaseSizeIngredient extends OilModItemClassIngredient {
 
-        public BackpackIncreaseSizeCraftingIngredient() {
+        public BackpackIncreaseSizeIngredient() {
             super(BackpackItem.class);
         }
 
@@ -114,7 +114,7 @@ public class BackpackItem extends OilItemBase<BackpackItemStack> {
         ItemCraftingFactory.registerGlobal(recipe);
         recipe = ItemCraftingFactory.createShapedRecipe(2,2, new OilItemOilCraftingResult(backpacks[0], 1), BackpackSackItem.class, BackpackShoulderStrapsItem.class, Material.SLIME_BALL, BackpackShoulderStrapsItem.class);
         ItemCraftingFactory.registerGlobal(recipe);
-        recipe = ItemCraftingFactory.createShapelessRecipe(new BackpackIncreaseSizeCraftingResult(), new BackpackIncreaseSizeCraftingIngredient(), BackpackSackItem.class, Material.LEATHER, Material.PAPER);
+        recipe = ItemCraftingFactory.createShapelessRecipe(new BackpackIncreaseSizeCraftingResult(), new BackpackIncreaseSizeIngredient(), BackpackSackItem.class, Material.LEATHER, Material.PAPER);
         ItemCraftingFactory.registerGlobal(recipe);
     }
 

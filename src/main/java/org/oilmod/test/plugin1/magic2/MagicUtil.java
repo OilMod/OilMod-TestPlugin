@@ -5,8 +5,8 @@ import org.oilmod.api.items.crafting.InterchangeableCraftingIngredient;
 import org.oilmod.api.items.crafting.ItemCraftingFactory;
 import org.oilmod.api.items.crafting.OilCraftingRecipe;
 import org.oilmod.api.items.crafting.OilItemOilCraftingResult;
-import org.oilmod.api.items.crafting.VanillaEnchantedBookCraftingIngredient;
-import org.oilmod.api.items.crafting.VanillaPotionCraftingIngredient;
+import org.oilmod.api.items.crafting.VanillaEnchantmentIngredient;
+import org.oilmod.api.items.crafting.VanillaPotionIngredient;
 import org.oilmod.test.plugin1.magic2.wandforcy.ArrowWandforcyItem;
 import org.oilmod.test.plugin1.magic2.wandforcy.DamageBeamWandforcyItem;
 import org.oilmod.test.plugin1.magic2.wandforcy.FlameBeamWandforcyItem;
@@ -57,8 +57,8 @@ public final class MagicUtil {
 
         ItemStack lapislazuli = new ItemStack(Material.INK_SACK, 1, (short) 4);
         ItemStack witherskull = new ItemStack(Material.SKULL_ITEM, 1, (short) 1);
-        VanillaPotionCraftingIngredient poisonLongNotNormal = new VanillaPotionCraftingIngredient(PotionType.POISON, VanillaPotionCraftingIngredient.PotionUpgraded.NotUpgraded, VanillaPotionCraftingIngredient.PotionExtended.Extended, VanillaPotionCraftingIngredient.PotionBottleType.Throwable, VanillaPotionCraftingIngredient.PotionBottleType.Lingering);
-        VanillaPotionCraftingIngredient regenLongNotNormal = new VanillaPotionCraftingIngredient(PotionType.REGEN, VanillaPotionCraftingIngredient.PotionUpgraded.NotUpgraded, VanillaPotionCraftingIngredient.PotionExtended.Extended, VanillaPotionCraftingIngredient.PotionBottleType.Throwable, VanillaPotionCraftingIngredient.PotionBottleType.Lingering);
+        VanillaPotionIngredient poisonLongNotNormal = new VanillaPotionIngredient(PotionType.POISON, VanillaPotionIngredient.PotionUpgraded.NotUpgraded, VanillaPotionIngredient.PotionExtended.Extended, VanillaPotionIngredient.PotionBottleType.Throwable, VanillaPotionIngredient.PotionBottleType.Lingering);
+        VanillaPotionIngredient regenLongNotNormal = new VanillaPotionIngredient(PotionType.REGEN, VanillaPotionIngredient.PotionUpgraded.NotUpgraded, VanillaPotionIngredient.PotionExtended.Extended, VanillaPotionIngredient.PotionBottleType.Throwable, VanillaPotionIngredient.PotionBottleType.Lingering);
         InterchangeableCraftingIngredient allGoldTools = new InterchangeableCraftingIngredient(noId(Material.GOLD_SWORD), noId(Material.GOLD_SPADE), noId(Material.GOLD_PICKAXE), noId(Material.GOLD_AXE));
 
 
@@ -88,7 +88,7 @@ public final class MagicUtil {
 
         //###ArrowWandforcyItem###
         recipe = ItemCraftingFactory.createShapedRecipe(3,3, new OilItemOilCraftingResult(arrowWandforcyItem, 1),
-                lapislazuli,         new VanillaEnchantedBookCraftingIngredient(Enchantment.ARROW_INFINITE, 1), lapislazuli,
+                lapislazuli,         new VanillaEnchantmentIngredient(Enchantment.ARROW_INFINITE, 1), lapislazuli,
                 Material.IRON_INGOT, blankWandforcyItem,                                                        Material.IRON_INGOT,
                 Material.ARROW,      Material.ARROW,                                                            Material.ARROW);
         ItemCraftingFactory.registerGlobal(recipe);
@@ -126,7 +126,7 @@ public final class MagicUtil {
 
         //###SniperWandforcyItem###
         recipe = ItemCraftingFactory.createShapedRecipe(3,3, new OilItemOilCraftingResult(sniperWandforcyItem, 1),
-                Material.REDSTONE,   new VanillaEnchantedBookCraftingIngredient(Enchantment.ARROW_DAMAGE, 5), Material.REDSTONE,
+                Material.REDSTONE,   new VanillaEnchantmentIngredient(Enchantment.ARROW_DAMAGE, 5), Material.REDSTONE,
                 Material.IRON_INGOT, blankWandforcyItem,                                                      Material.IRON_INGOT,
                 Material.IRON_INGOT, Material.DIAMOND,                                                        Material.IRON_INGOT);
         ItemCraftingFactory.registerGlobal(recipe);
