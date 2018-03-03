@@ -14,7 +14,7 @@ import org.bukkit.event.block.Action;
 public class CoffinItem extends OilItem<CoffinItemStack> {
 
     public CoffinItem(OilMod mod) {
-        super("Coffin", Material.ENDER_CHEST, 0, 64, "Coffin");
+        super(mod.createKey("Coffin"), Material.ENDER_CHEST, 0, 64, "Coffin");
     }
 
     @Override

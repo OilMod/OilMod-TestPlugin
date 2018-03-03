@@ -2,7 +2,7 @@ name: 'OilMod-Test'
 version: 0.0.1
 description: 'OilMod Api Test'
 author: sirati97
-main: TestPlugin
+main: org.oilmod.test.plugin1.TestPlugin
 load: STARTUP
 commands:
     oilmodtest:

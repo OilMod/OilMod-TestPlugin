@@ -45,9 +45,9 @@ public class TestPlugin extends JavaPlugin {
         ticker = new WeakReferenceTicker(this, 1, 20);
         mod = new OilMod("oiltest");
         itemRegistry = new ItemRegistry(mod);
-        itemRegistry.register(testItem = new TestItem());
-        itemRegistry.register(furnacePowderItem = new FurnacePowderItem());
-        itemRegistry.register(craftingBackpackItem = new CraftingBackpackItem());
+        itemRegistry.register(testItem = new TestItem(mod));
+        itemRegistry.register(furnacePowderItem = new FurnacePowderItem(mod));
+        itemRegistry.register(craftingBackpackItem = new CraftingBackpackItem(mod));
         BackpackItem.registerBackpacks(itemRegistry);
         MagicUtil.register(itemRegistry);
         getCommand("invsee").setExecutor(new InvseeCommand());

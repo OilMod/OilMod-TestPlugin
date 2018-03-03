@@ -98,8 +98,8 @@ public class BackpackItem extends OilItem<BackpackItemStack> {
     public static void registerBackpacks(ItemRegistry registry) {
         OilMod m = registry.getMod();
         //Register Items
-        BackpackShoulderStrapsItem shoulderStrapsItem=new BackpackShoulderStrapsItem();
-        BackpackSackItem sackItem=new BackpackSackItem();
+        BackpackShoulderStrapsItem shoulderStrapsItem=new BackpackShoulderStrapsItem(m);
+        BackpackSackItem sackItem=new BackpackSackItem(m);
         registry.register(shoulderStrapsItem); //registers the,
         registry.register(sackItem);
         backpacks = new BackpackItem[names.length];
