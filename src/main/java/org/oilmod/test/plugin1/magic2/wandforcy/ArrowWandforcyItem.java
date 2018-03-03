@@ -1,5 +1,6 @@
 package org.oilmod.test.plugin1.magic2.wandforcy;
 
+import org.oilmod.api.OilMod;
 import org.oilmod.api.items.NMSItemStack;
 import org.bukkit.enchantments.Enchantment;
 
@@ -7,8 +8,8 @@ import org.bukkit.enchantments.Enchantment;
  * Created by sirati97 on 11.03.2016.
  */
 public class ArrowWandforcyItem extends WandforcyItemBase<ArrowWandforcyItemStack> {
-    public ArrowWandforcyItem() {
-        super("ArrowWandforcy", "Arrow");
+    public ArrowWandforcyItem(OilMod mod) {
+        super(mod.createKey("ArrowWandforcy"), "Arrow");
     }
 
     @Override

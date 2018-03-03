@@ -3,7 +3,7 @@ package org.oilmod.test.plugin1;
 import org.oilmod.api.inventory.InventoryFactoryBase;
 import org.oilmod.api.inventory.ModFurnaceInventoryObject;
 import org.oilmod.api.items.NMSItemStack;
-import org.oilmod.api.items.OilItemBase;
+import org.oilmod.api.items.OilItem;
 import org.oilmod.api.items.OilItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -14,7 +14,7 @@ import org.bukkit.event.block.Action;
 public class FurnacePowderItemStack extends OilItemStack {
     ModFurnaceInventoryObject inventory = InventoryFactoryBase.getInstance().createFurnaceInventory("inv", this, "Furnace Powder", TestPlugin.getInstance().getTicker(), PortableInventoryFilter.INSTANCE, true);
 
-    public FurnacePowderItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public FurnacePowderItemStack(NMSItemStack nmsItemStack, OilItem item) {
         super(nmsItemStack, item);
     }
 

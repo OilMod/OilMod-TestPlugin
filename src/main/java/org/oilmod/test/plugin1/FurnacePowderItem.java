@@ -1,16 +1,17 @@
 package org.oilmod.test.plugin1;
 
+import org.oilmod.api.OilMod;
 import org.oilmod.api.items.NMSItemStack;
-import org.oilmod.api.items.OilItemBase;
+import org.oilmod.api.items.OilItem;
 import org.oilmod.api.items.OilItemStack;
 import org.bukkit.Material;
 
 /**
  * Created by sirati97 on 12.02.2016.
  */
-public class FurnacePowderItem extends OilItemBase {
-    public FurnacePowderItem() {
-        super("FurnacePowder", Material.BLAZE_POWDER, 0, 1, "Furnace Powder");
+public class FurnacePowderItem extends OilItem {
+    public FurnacePowderItem(OilMod mod) {
+        super(mod.createKey("FurnacePowder"), Material.BLAZE_POWDER, 0, 1, "Furnace Powder");
     }
 
     @Override

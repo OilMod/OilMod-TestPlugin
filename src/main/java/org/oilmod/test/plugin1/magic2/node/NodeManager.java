@@ -97,18 +97,15 @@ public class NodeManager implements Listener {
         TLongObjectMap<List<Node>> worldNodes = nodes.get(world.getUID());
         if (worldNodes != null) {
             final ConfigurationSection nodeSection = configuration.createSection("nodes");
-            worldNodes.forEachEntry(new TLongObjectProcedure<List<Node>>() {
-                @Override
-                public boolean execute(long chunkId, List<Node> chunkNodes) {
-                    if (chunkNodes != null && chunkNodes.size() > 0) {
-                        List<Map<String, Object>> chunkData = new ArrayList<>(chunkNodes.size());
-                        for (Node node:chunkNodes) {
-                            chunkData.add(node.serialize());
-                        }
-                        nodeSection.set(String.valueOf(chunkId), chunkData);
+            worldNodes.forEachEntry((chunkId, chunkNodes) -> {
+                if (chunkNodes != null && chunkNodes.size() > 0) {
+                    List<Map<String, Object>> chunkData = new ArrayList<>(chunkNodes.size());
+                    for (Node node:chunkNodes) {
+                        chunkData.add(node.serialize());
                     }
-                    return true;
+                    nodeSection.set(String.valueOf(chunkId), chunkData);
                 }
+                return true;
             });
         }
         try {
@@ -205,30 +202,10 @@ public class NodeManager implements Listener {
     }
 
     public void init(Plugin plugin) {
-        nodeDisplayer = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
-            @Override
-            public void run() {
-                displayActiveNodes();
-            }
-        },15,15);
-        nodeAttack = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
-            @Override
-            public void run() {
-                tickActiveNodes();
-            }
-        },20,20);
-        nodeUpdater = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
-            @Override
-            public void run() {
-                updateActiveNodes();
-            }
-        },100,100);
-        nodeSaver = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
-            @Override
-            public void run() {
-                displayActiveNodes();
-            }
-        },30600,30600);
+        nodeDisplayer = Bukkit.getScheduler().runTaskTimer(plugin, this::displayActiveNodes,15,15);
+        nodeAttack = Bukkit.getScheduler().runTaskTimer(plugin, this::tickActiveNodes,20,20);
+        nodeUpdater = Bukkit.getScheduler().runTaskTimer(plugin, this::updateActiveNodes,100,100);
+        nodeSaver = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, this::displayActiveNodes,30600,30600);
         Bukkit.getPluginManager().registerEvents(this, plugin);
         loadAll();
     }

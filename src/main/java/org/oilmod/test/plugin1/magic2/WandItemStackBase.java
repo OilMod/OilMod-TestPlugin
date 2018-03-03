@@ -5,7 +5,7 @@ import org.oilmod.api.inventory.ItemFilter;
 import org.oilmod.api.items.ItemDescription;
 import org.oilmod.api.items.NMSItemStack;
 import org.oilmod.api.items.OilBukkitItemStack;
-import org.oilmod.api.items.OilItemBase;
+import org.oilmod.api.items.OilItem;
 import org.oilmod.api.items.OilItemStack;
 import org.oilmod.test.plugin1.TestPlugin;
 import org.oilmod.test.plugin1.magic2.node.Node;
@@ -39,7 +39,7 @@ public abstract class WandItemStackBase<T extends WandItemStackBase<T>> extends 
     private final ItemStackHolder wandforcyContainer = new WandforcyItemstackHolderImpl();
     private final IntegerData vis = new IntegerData("visStored", this);
 
-    public WandItemStackBase(NMSItemStack nmsItemStack, OilItemBase item) {
+    public WandItemStackBase(NMSItemStack nmsItemStack, OilItem item) {
         super(nmsItemStack, item);
     }
 

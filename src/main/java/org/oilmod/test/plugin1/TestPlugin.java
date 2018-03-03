@@ -1,5 +1,6 @@
 package org.oilmod.test.plugin1;
 
+import org.oilmod.api.OilMod;
 import org.oilmod.api.items.ItemRegistry;
 import org.oilmod.test.plugin1.backpack.BackpackItem;
 import org.oilmod.test.plugin1.magic2.MagicUtil;
@@ -34,6 +35,7 @@ public class TestPlugin extends JavaPlugin {
     private static TestPlugin instance;
     private TestUIBuilder testUIBuilder = new TestUIBuilder();
     private NodeManager nodeManager;
+    private OilMod mod;
 
     @Override
     public void onEnable() {
@@ -41,7 +43,8 @@ public class TestPlugin extends JavaPlugin {
         nodeManager = new NodeManager();
         nodeManager.init(this);
         ticker = new WeakReferenceTicker(this, 1, 20);
-        itemRegistry = new ItemRegistry("oiltest");
+        mod = new OilMod("oiltest");
+        itemRegistry = new ItemRegistry(mod);
         itemRegistry.register(testItem = new TestItem());
         itemRegistry.register(furnacePowderItem = new FurnacePowderItem());
         itemRegistry.register(craftingBackpackItem = new CraftingBackpackItem());
@@ -90,29 +93,25 @@ public class TestPlugin extends JavaPlugin {
                         if (effect == null) {
                             effect = Effect.valueOf(args[1]);
                         }
-                        if (effect == null) {
-                            player.sendMessage("there is no particle called " + args[1]);
-                        } else {
-                            final Location loc = player.getEyeLocation();
-                            final Effect finalEffect = effect;
-                            Bukkit.getScheduler().runTaskLater(this, new Runnable() {
-                                final World w = loc.getWorld();
-                                int counter = 0;
-                                int i=0;
-                                @Override
-                                public void run() {
-                                    w.spigot().playEffect(loc, finalEffect, mode ? 0 : counter, mode ? counter : 0, 0,0,0, (float) 0.2, 1, 30);
-                                    i++;
-                                    if (i == 10) {
-                                        i = 0;
-                                        counter++;
-                                    }
-                                    if (counter < 1000) {
-                                        Bukkit.getScheduler().runTaskLater(TestPlugin.this, this, 2);
-                                    }
+                        final Location loc = player.getEyeLocation();
+                        final Effect finalEffect = effect;
+                        Bukkit.getScheduler().runTaskLater(this, new Runnable() {
+                            final World w = loc.getWorld();
+                            int counter = 0;
+                            int i=0;
+                            @Override
+                            public void run() {
+                                w.spigot().playEffect(loc, finalEffect, mode ? 0 : counter, mode ? counter : 0, 0,0,0, (float) 0.2, 1, 30);
+                                i++;
+                                if (i == 10) {
+                                    i = 0;
+                                    counter++;
                                 }
-                            }, 30);
-                        }
+                                if (counter < 1000) {
+                                    Bukkit.getScheduler().runTaskLater(TestPlugin.this, this, 2);
+                                }
+                            }
+                        }, 30);
                     }
 
 
@@ -150,9 +149,5 @@ public class TestPlugin extends JavaPlugin {
             System.out.println("\tat " + s.getClassName() + "." + s.getMethodName()
                     + "(" + s.getFileName() + ":" + s.getLineNumber() + ")");
         }
-    }
-
-    public void ontest(FurnaceBurnEvent e) {
-        e.getBlock()
     }
 }

@@ -1,6 +1,6 @@
 package org.oilmod.test.plugin1;
 
-import org.oilmod.api.items.OilItemBase;
+import org.oilmod.api.items.OilItem;
 import org.oilmod.api.items.OilItemStack;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -11,7 +11,7 @@ import org.bukkit.event.block.Action;
 /**
  * Created by sirati97 on 16.01.2016.
  */
-public class TestItem extends OilItemBase {
+public class TestItem extends OilItem {
     public TestItem() {
         super("TestItem", Material.STICK, 0, 2, "TestItem");
     }

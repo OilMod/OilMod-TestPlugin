@@ -2,7 +2,7 @@ package org.oilmod.test.plugin1.magic2;
 
 import org.oilmod.api.data.ItemStackData;
 import org.oilmod.api.items.NMSItemStack;
-import org.oilmod.api.items.OilItemBase;
+import org.oilmod.api.items.OilItem;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 public class BasicWandItemStack extends WandItemStackBase<BasicWandItemStack>{
     private final ItemStackData wandforcyDataTag = ItemStackData.createInstance("wandforcy", this);
 
-    public BasicWandItemStack(NMSItemStack nmsItemStack, OilItemBase item) {
+    public BasicWandItemStack(NMSItemStack nmsItemStack, OilItem item) {
         super(nmsItemStack, item);
     }
 
