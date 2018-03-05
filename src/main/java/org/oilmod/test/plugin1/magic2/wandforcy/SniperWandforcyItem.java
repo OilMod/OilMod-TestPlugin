@@ -8,7 +8,7 @@ import org.oilmod.api.items.NMSItemStack;
  */
 public class SniperWandforcyItem extends WandforcyItemBase<SniperWandforcyItemStack> {
     public SniperWandforcyItem(OilMod mod) {
-        super(mod.createKey("SniperWandforcy"), "Sniper");
+        super(mod.createKey("wandforcy_sniper"), "Sniper");
     }
 
     @Override

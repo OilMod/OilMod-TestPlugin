@@ -8,7 +8,7 @@ import org.oilmod.api.items.NMSItemStack;
  */
 public class DamageBeamWandforcyItem extends WandforcyItemBase<DamageBeamWandforcyItemStack> {
     public DamageBeamWandforcyItem(OilMod mod) {
-        super(mod.createKey("DamageBeamWandforcy"), "Damage Beam");
+        super(mod.createKey("wandforcy_damage_beam"), "Damage Beam");
     }
 
     @Override

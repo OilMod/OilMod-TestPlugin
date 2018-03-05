@@ -8,7 +8,7 @@ import org.oilmod.api.items.NMSItemStack;
  */
 public class FlameBeamWandforcyItem extends WandforcyItemBase<FlameBeamWandforcyItemStack> {
     public FlameBeamWandforcyItem(OilMod mod) {
-        super(mod.createKey("FlameBeamWandforcy"), "Flame Beam");
+        super(mod.createKey("wandforcy_flame_beam"), "Flame Beam");
     }
 
     @Override

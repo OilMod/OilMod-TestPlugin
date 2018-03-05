@@ -8,7 +8,7 @@ import org.oilmod.api.items.NMSItemStack;
  */
 public class ItemMagnetWandforcyItem extends WandforcyItemBase<ItemMagnetWandforcyItemStack> {
     public ItemMagnetWandforcyItem(OilMod mod) {
-        super(mod.createKey("ItemMagnetWandforcy"), "Item Magnet");
+        super(mod.createKey("wandforcy_item_magnet"), "Item Magnet");
     }
 
     @Override

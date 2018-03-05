@@ -13,7 +13,7 @@ import org.oilmod.api.util.OilKey;
  */
 public class BackpackShoulderStrapsItem extends OilItem {
     public BackpackShoulderStrapsItem(OilMod mod) {
-        super(mod.createKey("BackpackShoulderStraps"), Material.EMPTY_MAP, 0, 64, "Backpack Shoulder Straps");//defines Backpack Shoulder Strap item
+        super(mod.createKey("backpack_shoulder_straps"), Material.EMPTY_MAP, 0, 64, "Backpack Shoulder Straps");//defines Backpack Shoulder Strap item
     }
 
     @Override

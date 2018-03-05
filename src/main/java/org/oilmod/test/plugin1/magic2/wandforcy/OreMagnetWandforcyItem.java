@@ -9,7 +9,7 @@ import org.bukkit.enchantments.Enchantment;
  */
 public class OreMagnetWandforcyItem extends WandforcyItemBase<OreMagnetWandforcyItemStack> {
     public OreMagnetWandforcyItem(OilMod mod) {
-        super(mod.createKey("OreMagnetWandforcy"), "Ore Magnet");
+        super(mod.createKey("wandforcy_ore_magnet"), "Ore Magnet");
     }
 
     @Override

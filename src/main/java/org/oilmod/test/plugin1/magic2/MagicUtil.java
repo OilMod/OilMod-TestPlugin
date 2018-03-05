@@ -65,7 +65,7 @@ public final class MagicUtil {
 
 
         //###VisContainerItem###
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("VisContainerCrafting"), 3,3, new OilItemCraftingResult(visContainerItem, 2),
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_vis_container"), 3,3, new OilItemCraftingResult(visContainerItem, 2),
                 Material.IRON_INGOT,  Material.ENDER_PEARL, Material.IRON_INGOT,
                 Material.LAPIS_BLOCK, Material.LAPIS_BLOCK, Material.LAPIS_BLOCK,
                 Material.IRON_INGOT,  Material.GOLD_INGOT,  Material.IRON_INGOT);
@@ -74,7 +74,7 @@ public final class MagicUtil {
 
         //###BasicWand###
 
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("BasicWandCrafting"), 3,3, new OilItemCraftingResult(basicBasicWandItem, 1),
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wand_basic"), 3,3, new OilItemCraftingResult(basicBasicWandItem, 1),
                 null,                   Material.BLAZE_POWDER, Material.DIAMOND,
                 VisContainerItem.class, Material.STICK,        Material.BLAZE_POWDER,
                 Material.IRON_BLOCK,    visContainerItem,      null);
@@ -82,14 +82,14 @@ public final class MagicUtil {
 
 
         //###BlankWandforcyItem###
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("BlackWandCrafting"), 3,3, new OilItemCraftingResult(blankWandforcyItem, 1),
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_blank"), 3,3, new OilItemCraftingResult(blankWandforcyItem, 1),
                 Material.REDSTONE,   Material.IRON_INGOT,  Material.REDSTONE,
                 Material.IRON_INGOT, noId(Material.STONE), Material.IRON_INGOT,
                 lapislazuli,         Material.IRON_INGOT,  lapislazuli);
         ItemCraftingFactory.registerGlobal(recipe);
 
         //###ArrowWandforcyItem###
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("ArrowWandforcyCrafting"), 3,3, new OilItemCraftingResult(arrowWandforcyItem, 1),
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_arrow"), 3,3, new OilItemCraftingResult(arrowWandforcyItem, 1),
                 lapislazuli,         new VanillaEnchantmentIngredient(Enchantment.ARROW_INFINITE, 1), lapislazuli,
                 Material.IRON_INGOT, blankWandforcyItem,                                                        Material.IRON_INGOT,
                 Material.ARROW,      Material.ARROW,                                                            Material.ARROW);
@@ -97,7 +97,7 @@ public final class MagicUtil {
 
 
         //###ReplaceWandforcyItem###
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("ReplaceWandforceCrafting"), 3,3, new OilItemCraftingResult(replaceWandforcyItem, 1),
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_replace"), 3,3, new OilItemCraftingResult(replaceWandforcyItem, 1),
                 lapislazuli,  Material.DISPENSER,             lapislazuli,
                 allGoldTools, blankWandforcyItem,             allGoldTools,
                 allGoldTools, noId(Material.DIAMOND_PICKAXE), allGoldTools);
@@ -105,7 +105,7 @@ public final class MagicUtil {
 
 
         //###OreMagnetWandforcyItem###
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("OreMagnetWandforcyCrafting"), 3,3, new OilItemCraftingResult(oreMagnetWandforcyItem, 1),
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_ore_magnet"), 3,3, new OilItemCraftingResult(oreMagnetWandforcyItem, 1),
                 Material.REDSTONE_BLOCK, Material.DIAMOND,    Material.REDSTONE_BLOCK,
                 Material.IRON_BLOCK,     blankWandforcyItem,  Material.IRON_BLOCK,
                 Material.IRON_BLOCK,     Material.IRON_BLOCK, Material.IRON_BLOCK);
@@ -113,13 +113,13 @@ public final class MagicUtil {
 
 
         //###FlameBeamWandforcyItem###
-        recipe = ItemCraftingFactory.createShapelessRecipe(m.createKey("FlameBeamWandforcyCrafting"), new OilItemCraftingResult(flameBeamWandforcyItem, 1),
+        recipe = ItemCraftingFactory.createShapelessRecipe(m.createKey("crafting_wandforcy_flame_beam"), new OilItemCraftingResult(flameBeamWandforcyItem, 1),
                 Material.FIREBALL, blankWandforcyItem, Material.FIREBALL);
         ItemCraftingFactory.registerGlobal(recipe);
 
 
         //###LifestealBeamWandforcyItem###
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("LifestealBeamWandforcyCrafting"), 3,3, new OilItemCraftingResult(lifestealBeamWandforcyItem, 1),
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_lifesteal_beam"), 3,3, new OilItemCraftingResult(lifestealBeamWandforcyItem, 1),
                 Material.DIAMOND,    witherskull,        Material.DIAMOND,
                 poisonLongNotNormal, blankWandforcyItem, regenLongNotNormal,
                 lapislazuli,         lapislazuli,        lapislazuli);
@@ -127,7 +127,7 @@ public final class MagicUtil {
 
 
         //###SniperWandforcyItem###
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("SniperWandforcyCrafting"), 3,3, new OilItemCraftingResult(sniperWandforcyItem, 1),
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_sniper"), 3,3, new OilItemCraftingResult(sniperWandforcyItem, 1),
                 Material.REDSTONE,   new VanillaEnchantmentIngredient(Enchantment.ARROW_DAMAGE, 5), Material.REDSTONE,
                 Material.IRON_INGOT, blankWandforcyItem,                                                      Material.IRON_INGOT,
                 Material.IRON_INGOT, Material.DIAMOND,                                                        Material.IRON_INGOT);
@@ -135,7 +135,7 @@ public final class MagicUtil {
 
 
         //###DamageBeamWandforcyItem###
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("DamageBeamWandforcyCrafting"), 3,3, new OilItemCraftingResult(damageBeamWandforcyItem, 1),
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_damage_beam"), 3,3, new OilItemCraftingResult(damageBeamWandforcyItem, 1),
                 null,              noId(Material.IRON_SWORD), null,
                 Material.REDSTONE, blankWandforcyItem,        Material.REDSTONE,
                 lapislazuli,       lapislazuli,               lapislazuli);
@@ -143,7 +143,7 @@ public final class MagicUtil {
 
 
         //###ItemMagnetWandforcyItem###
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("ItemMagnetWandforcyCrafting"), 3,3, new OilItemCraftingResult(itemMagnetWandforcyItem, 1),
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_item_magnet"), 3,3, new OilItemCraftingResult(itemMagnetWandforcyItem, 1),
                 Material.REDSTONE  , Material.ENDER_PEARL, Material.REDSTONE,
                 Material.IRON_INGOT, blankWandforcyItem,   Material.IRON_INGOT,
                 Material.IRON_INGOT, Material.IRON_INGOT,  Material.IRON_INGOT);

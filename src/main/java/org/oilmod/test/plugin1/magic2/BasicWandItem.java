@@ -10,7 +10,7 @@ import org.bukkit.Material;
  */
 public class BasicWandItem extends OilItem<BasicWandItemStack> {
     public BasicWandItem(OilMod mod) {
-        super(mod.createKey("BasicWand"), Material.BLAZE_ROD, 0, 1, "Basic Wand");
+        super(mod.createKey("wand_basic"), Material.BLAZE_ROD, 0, 1, "Basic Wand");
     }
 
     @Override

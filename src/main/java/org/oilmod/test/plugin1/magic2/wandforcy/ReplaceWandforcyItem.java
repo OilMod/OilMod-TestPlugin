@@ -9,7 +9,7 @@ import org.bukkit.enchantments.Enchantment;
  */
 public class ReplaceWandforcyItem extends WandforcyItemBase<ReplaceWandforcyItemStack> {
     public ReplaceWandforcyItem(OilMod mod) {
-        super(mod.createKey("ReplaceWandforcy"), "Replace");
+        super(mod.createKey("wandforcy_replace"), "Replace");
     }
 
     @Override

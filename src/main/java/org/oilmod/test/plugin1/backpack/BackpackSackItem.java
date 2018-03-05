@@ -12,7 +12,7 @@ import org.bukkit.event.block.Action;
  */
 public class BackpackSackItem extends OilItem {
     public BackpackSackItem(OilMod mod) {
-        super(mod.createKey("BackpackSack"), Material.BOAT, 0, 64, "Backpack Sack");//defines Backpack Sack item
+        super(mod.createKey("backpack_sack"), Material.BOAT, 0, 64, "Backpack Sack");//defines Backpack Sack item
     }
 
     @Override

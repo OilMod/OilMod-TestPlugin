@@ -11,7 +11,7 @@ import org.bukkit.Material;
  */
 public class CraftingBackpackItem extends OilItem {
     public CraftingBackpackItem(OilMod mod) {
-        super(mod.createKey("CraftingBackpack"), Material.LEATHER, 0, 1, "Crafting Backpack");
+        super(mod.createKey("backpack_crafting"), Material.LEATHER, 0, 1, "Crafting Backpack");
     }
 
     @Override

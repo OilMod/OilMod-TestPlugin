@@ -9,7 +9,7 @@ import org.bukkit.enchantments.Enchantment;
  */
 public class ArrowWandforcyItem extends WandforcyItemBase<ArrowWandforcyItemStack> {
     public ArrowWandforcyItem(OilMod mod) {
-        super(mod.createKey("ArrowWandforcy"), "Arrow");
+        super(mod.createKey("wandforcy_arrow"), "Arrow");
     }
 
     @Override

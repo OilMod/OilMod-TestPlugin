@@ -11,7 +11,7 @@ import org.bukkit.Material;
  */
 public class FurnacePowderItem extends OilItem {
     public FurnacePowderItem(OilMod mod) {
-        super(mod.createKey("FurnacePowder"), Material.BLAZE_POWDER, 0, 1, "Furnace Powder");
+        super(mod.createKey("furnace_powder"), Material.BLAZE_POWDER, 0, 1, "Furnace Powder");
     }
 
     @Override

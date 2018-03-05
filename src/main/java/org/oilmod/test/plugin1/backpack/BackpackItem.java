@@ -23,7 +23,7 @@ public class BackpackItem extends OilItem<BackpackItemStack> {
     private final int rows;
 
     public BackpackItem(OilMod mod, int rowsIndex) {
-        super(mod.createKey(names[rowsIndex].replace(" ","")+"Backpack"), Material.LEATHER, 0, 1, names[rowsIndex] + " Backpack"); //defines Backpack item
+        super(mod.createKey("backpack_" + names[rowsIndex].replace(" ","_").toLowerCase()), Material.LEATHER, 0, 1, names[rowsIndex] + " Backpack"); //defines Backpack item
         this.rows = rowsIndex+1;
     }
 
@@ -110,13 +110,13 @@ public class BackpackItem extends OilItem<BackpackItemStack> {
         }
         //Add crafting recipes
         OilCraftingRecipe recipe;
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("ShoulderStrapCrafting"), 2,3, new OilItemCraftingResult(shoulderStrapsItem, 4), Material.STRING, Material.LEATHER, null, Material.LEATHER, Material.IRON_INGOT, Material.LEATHER);
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_shoulder_strap"), 2,3, new OilItemCraftingResult(shoulderStrapsItem, 4), Material.STRING, Material.LEATHER, null, Material.LEATHER, Material.IRON_INGOT, Material.LEATHER);
         ItemCraftingFactory.registerGlobal(recipe);
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("SackCrafting"), 3,3, new OilItemCraftingResult(sackItem, 1), Material.PAPER, Material.PAPER, Material.PAPER, Material.LEATHER, Material.STICK, Material.LEATHER, Material.STRING, Material.LEATHER, Material.STRING);
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_sack"), 3,3, new OilItemCraftingResult(sackItem, 1), Material.PAPER, Material.PAPER, Material.PAPER, Material.LEATHER, Material.STICK, Material.LEATHER, Material.STRING, Material.LEATHER, Material.STRING);
         ItemCraftingFactory.registerGlobal(recipe);
-        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("BackpackCrafting"), 2,2, new OilItemCraftingResult(backpacks[0], 1), BackpackSackItem.class, BackpackShoulderStrapsItem.class, Material.SLIME_BALL, BackpackShoulderStrapsItem.class);
+        recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_backpack"), 2,2, new OilItemCraftingResult(backpacks[0], 1), BackpackSackItem.class, BackpackShoulderStrapsItem.class, Material.SLIME_BALL, BackpackShoulderStrapsItem.class);
         ItemCraftingFactory.registerGlobal(recipe);
-        recipe = ItemCraftingFactory.createShapelessRecipe(m.createKey("BackpackIncreaseSize"), new BackpackIncreaseSizeCraftingResult(), new BackpackIncreaseSizeIngredient(), BackpackSackItem.class, Material.LEATHER, Material.PAPER);
+        recipe = ItemCraftingFactory.createShapelessRecipe(m.createKey("backpack_increase_size"), new BackpackIncreaseSizeCraftingResult(), new BackpackIncreaseSizeIngredient(), BackpackSackItem.class, Material.LEATHER, Material.PAPER);
         ItemCraftingFactory.registerGlobal(recipe);
     }
 
