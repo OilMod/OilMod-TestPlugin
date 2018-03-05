@@ -13,7 +13,7 @@ public class InvseeUIBuilder extends UserInterfaceBuilder<Player> {
 
     public void displayNewUI(Player player, Player other) {
         super.displayNewUI(player, other);
-    }
+    } //the other player is passed through as the argument
 
     @Override
     protected UserInterface buildDisplay(Player player, Player other, UserInterfaceFactory userInterfaceFactory) {
@@ -23,5 +23,4 @@ public class InvseeUIBuilder extends UserInterfaceBuilder<Player> {
         ui.showPanel(playerPanel, otherPanel);
         return ui;
     }
-
 }
