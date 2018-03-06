@@ -6,7 +6,6 @@ import org.oilmod.api.items.OilItemStack;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
-import org.oilmod.api.util.OilKey;
 
 /**
  * Created by sirati97 on 24.03.2016.
