@@ -26,7 +26,7 @@ public class BackpackItemStack extends OilItemStack {
 
     @Override
     protected List<String> createDescription() {
-        return Arrays.asList(getItem().getName()+".", "", "This backpack has §6" + getRows() + " " + (getRows()==1?"row":"rows")+"§7.", "Can store up to §6" + (getRows()*9) + "§7 stacks of items!"); //Creates item description if needed
+        return Arrays.asList(getItem().getDisplayName()+".", "", "This backpack has §6" + getRows() + " " + (getRows()==1?"row":"rows")+"§7.", "Can store up to §6" + (getRows()*9) + "§7 stacks of items!"); //Creates item description if needed
     }
 
     @Override
