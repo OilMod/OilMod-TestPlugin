@@ -1,6 +1,6 @@
 package org.oilmod.test.plugin1.magic2.wandforcy;
 
-import org.oilmod.api.inventory.InventoryFactoryBase;
+import org.oilmod.api.inventory.InventoryFactory;
 import org.oilmod.api.inventory.ModInventoryObject;
 import org.oilmod.api.items.NMSItemStack;
 import org.oilmod.test.plugin1.BlockFilter;
@@ -33,7 +33,7 @@ import static org.oilmod.test.plugin1.InventoryUtil.transferInventory;
  */
 public class ReplaceWandforcyItemStack extends WandforcyItemStackBase<ReplaceWandforcyItemStack> {
     private static final BlockFace[] SITES = new BlockFace[]{BlockFace.DOWN, BlockFace.UP, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST};
-    private ModInventoryObject blockContainer = InventoryFactoryBase.getInstance().createBasicInventory("blockCon", this, 18, "Block Container", BlockFilter.INSTANCE, true);
+    private ModInventoryObject blockContainer = InventoryFactory.getInstance().createBasicInventory("blockCon", this, 18, "Block Container", BlockFilter.INSTANCE, true);
     private UIPanel uiPanel;
 
     public ReplaceWandforcyItemStack(NMSItemStack nmsItemStack, WandforcyItemBase item) {

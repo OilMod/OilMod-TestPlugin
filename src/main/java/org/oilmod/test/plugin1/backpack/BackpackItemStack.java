@@ -1,6 +1,6 @@
 package org.oilmod.test.plugin1.backpack;
 
-import org.oilmod.api.inventory.InventoryFactoryBase;
+import org.oilmod.api.inventory.InventoryFactory;
 import org.oilmod.api.inventory.ModInventoryObject;
 import org.oilmod.api.items.NMSItemStack;
 import org.oilmod.api.items.OilItemStack;
@@ -21,7 +21,7 @@ public class BackpackItemStack extends OilItemStack {
 
     public BackpackItemStack(NMSItemStack nmsItemStack, BackpackItem item) {
         super(nmsItemStack, item);
-        inventory = InventoryFactoryBase.getInstance().createBasicInventory("inv", this, 9*item.getRows(), "Backpack", PortableInventoryFilter.INSTANCE, true); //Creates inventory attached to
+        inventory = InventoryFactory.getInstance().createBasicInventory("inv", this, 9*item.getRows(), "Backpack", PortableInventoryFilter.INSTANCE, true); //Creates inventory attached to
     }
 
     @Override
