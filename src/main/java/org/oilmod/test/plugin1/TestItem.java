@@ -14,7 +14,7 @@ import org.bukkit.event.block.Action;
  */
 public class TestItem extends OilItem {
     public TestItem(OilMod mod) {
-        super(mod.createKey("test_item"), Material.STICK, 0, 2, "TestItem");
+        super(mod.createKey("test_item"), itemType, Material.STICK, 0, 2, "TestItem");
     }
 
     @Override

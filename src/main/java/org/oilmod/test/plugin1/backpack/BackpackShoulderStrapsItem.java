@@ -12,7 +12,7 @@ import org.bukkit.event.block.Action;
  */
 public class BackpackShoulderStrapsItem extends OilItem {
     public BackpackShoulderStrapsItem(OilMod mod) {
-        super(mod.createKey("backpack_shoulder_straps"), Material.EMPTY_MAP, 0, 64, "Backpack Shoulder Straps");//defines Backpack Shoulder Strap item
+        super(mod.createKey("backpack_shoulder_straps"), itemType, Material.EMPTY_MAP, 0, 64, "Backpack Shoulder Straps");//defines Backpack Shoulder Strap item
     }
 
     @Override

@@ -12,7 +12,7 @@ import org.oilmod.api.util.OilKey;
 public class BasicExampleItem extends OilItem { //Base class for all modded Items (Items=/=ItemStacks)
 
     public BasicExampleItem(OilKey key) {
-        super(key, Material.STICK, 0, 2, "Basic Example Item");
+        super(key, itemType, Material.STICK, 0, 2, "Basic Example Item");
         //VanillaSees=Material.STICK, MaterialData=0, MaxStackSize=2, DisplayName="Basic Example Item"
     }
 

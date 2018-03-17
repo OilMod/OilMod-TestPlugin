@@ -23,7 +23,7 @@ public class BackpackItem extends OilItem<BackpackItemStack> {
     private final int rows;
 
     public BackpackItem(OilMod mod, int rowsIndex) {
-        super(mod.createKey("backpack_" + names[rowsIndex].replace(" ","_").toLowerCase()), Material.LEATHER, 0, 1, names[rowsIndex] + " Backpack"); //defines Backpack item
+        super(mod.createKey("backpack_" + names[rowsIndex].replace(" ","_").toLowerCase()), itemType, Material.LEATHER, 0, 1, names[rowsIndex] + " Backpack"); //defines Backpack item
         this.rows = rowsIndex+1;
     }
 
