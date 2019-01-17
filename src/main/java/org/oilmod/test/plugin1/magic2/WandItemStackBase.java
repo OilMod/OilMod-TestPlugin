@@ -97,32 +97,6 @@ public abstract class WandItemStackBase<T extends WandItemStackBase<T>> extends 
             }
             return true;
         }
-//        int visVirtual = getVis();
-//        Inventory inv = visContainer.getBukkitInventory();
-//        for (int i=0;i<inv.getSize()&&visVirtual<visNeeded;i++) {
-//            ItemStack itemStack = inv.getItem(i);
-//            if (itemStack != null && itemStack instanceof OilBukkitItemStack) {
-//                OilBukkitItemStack oilBukkitItemStack = (OilBukkitItemStack) itemStack;
-//                if (oilBukkitItemStack.getOilItemStack() instanceof VisHolder) {
-//                    VisHolder visHolder = (VisHolder) oilBukkitItemStack.getOilItemStack();
-//                    int visMissing = visNeeded-visVirtual;
-//                    int itemsNeeded = visMissing/visHolder.getVis()+((visMissing%visHolder.getVis()==0)?0:1);
-//                    int itemsConverted = Math.min(itemsNeeded, itemStack.getAmount());
-//                    visVirtual += itemsConverted * visHolder.getVis();
-//                    if (remove) {
-//                        if (itemStack.getAmount()-itemsConverted < 1) {
-//                            inv.setItem(i, null);
-//                        } else {
-//                            itemStack.setAmount(itemStack.getAmount()-itemsConverted);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if (remove && visVirtual >= visNeeded) {
-//            setVis(visVirtual-visNeeded);
-//        }
-//        return visVirtual>=visNeeded;
         return false;
     }
 
