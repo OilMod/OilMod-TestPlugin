@@ -164,10 +164,11 @@ public class OreMagnetWandforcyItemStack extends BeamWandforcyItemStackBase<OreM
         newState.update(true, false);
     }
 
-    @Override
+    //TODO: readd
+    /*@Override
     protected List<String> createDescription() {
         return Collections.singletonList("Efficiency increases the range!");
-    }
+    }*/
 
     @Override
     protected boolean checkClass(WandforcyItemStackBase itemStack) {

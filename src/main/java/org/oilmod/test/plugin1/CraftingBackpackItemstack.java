@@ -18,9 +18,4 @@ public class CraftingBackpackItemstack extends OilItemStack {
         super(nmsItemStack, item);
     }
 
-    @Override
-    public boolean onUse(Player player, Action action) {
-        player.openInventory(inventory.getBukkitInventory());
-        return true;
-    }
 }

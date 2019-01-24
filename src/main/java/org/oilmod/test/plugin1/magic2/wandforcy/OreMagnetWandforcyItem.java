@@ -17,14 +17,13 @@ public class OreMagnetWandforcyItem extends WandforcyItemBase<OreMagnetWandforcy
         return new OreMagnetWandforcyItemStack(nmsItemStack, this);
     }
 
-
     @Override
-    public int getEnchantSelectModifier() {
+    public int getItemEnchantability() {
         return 12;
     }
 
     @Override
-    public boolean canEnchant(Enchantment enchantment) {
+    public boolean canEnchantSpecial(Enchantment enchantment, boolean anvil) {
         return Enchantment.DURABILITY.equals(enchantment)||Enchantment.DIG_SPEED.equals(enchantment);
     }
 }

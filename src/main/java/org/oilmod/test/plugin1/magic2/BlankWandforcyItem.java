@@ -9,6 +9,6 @@ import org.bukkit.Material;
  */
 public class BlankWandforcyItem extends OilItem {
     public BlankWandforcyItem(OilMod mod) {
-        super(mod.createKey("wandforcy_blank"), itemType, Material.FIREWORK_CHARGE, 0, "Blank Wandforcy");
+        super(mod.createKey("wandforcy_blank"), Material.FIREWORK_CHARGE, "Blank Wandforcy");
     }
 }

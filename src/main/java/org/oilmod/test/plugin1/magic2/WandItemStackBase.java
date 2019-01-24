@@ -43,53 +43,6 @@ public abstract class WandItemStackBase<T extends WandItemStackBase<T>> extends 
         super(nmsItemStack, item);
     }
 
-    @Override
-    public boolean onUseOnBlock(Player player, Action action, Block blockClicked, BlockFace blockFace) {
-        Wandforcy wandforcy = getWandforcy();
-        if (!player.isSneaking() && wandforcy != null) {
-            wandforcy.onWandUseOnBlock(this, player, action, blockClicked, blockFace);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onUse(Player player, Action action) {
-        if (player.isSneaking()) {
-            WandUIBuilder.INSTANCE.displayNewUI(player, this);
-        } else {
-            Wandforcy wandforcy = getWandforcy();
-            if (wandforcy == null) {
-                onNoWandforcyUse(player);
-            } else {
-                wandforcy.onWandUse(this, player, action);
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onLeftClickOnBlock(Player player, Action action, Block blockClicked, BlockFace blockFace) {
-        Wandforcy wandforcy = getWandforcy();
-        if (!player.isSneaking() && wandforcy != null) {
-            return wandforcy.onWandLeftClickOnBlock(this, player, action, blockClicked, blockFace);
-        }
-        return false;
-    }
-
-    @Override
-    public boolean onLeftClick(Player player, Action action) {
-        if (player.isSneaking()) {
-            onEjectWandforcy(player);
-            return true;
-        } else {
-            Wandforcy wandforcy = getWandforcy();
-            if (wandforcy != null) {
-                return wandforcy.onWandLeftClick(this, player, action);
-            }
-        }
-        return false;
-    }
-
     private boolean useVis(boolean remove, int visNeeded) {
         if (getVis() >= visNeeded) {
             if (remove) {
@@ -105,24 +58,9 @@ public abstract class WandItemStackBase<T extends WandItemStackBase<T>> extends 
     }
 
     public void setVis(int vis) {
-        ItemDescription description = getItemDescription();
-        description.setLine(1, getVisStoredDescriptionLine(vis), true);
+        //ItemDescription description = getItemDescription(); //TODO readd
+        //description.setLine(1, getVisStoredDescriptionLine(vis), true);
         this.vis.setData(vis);
-    }
-
-    @Override
-    public final void combineAnvil(ItemStack itemStack, HumanEntity human) {
-        //noinspection unchecked
-        T other = (T) ((OilBukkitItemStack) itemStack).getOilItemStack();
-        List<ItemStack> drops= combineWith(other);
-        dropAll(drops, human);
-    }
-
-    @Override
-    public void prepareCombineAnvil(ItemStack itemStack, HumanEntity human) {
-        //noinspection unchecked
-        T other = (T) ((OilBukkitItemStack) itemStack).getOilItemStack();
-        setVis(getVis()+other.getVis());
     }
 
     protected String getVisStoredDescriptionLine(int vis) {
@@ -133,11 +71,11 @@ public abstract class WandItemStackBase<T extends WandItemStackBase<T>> extends 
         return (wandforcy==null?"No":wandforcy.getSpellName())+" spell loaded.";
     }
 
-    @Override
+    /*@Override
     protected List<String> createDescription() {
         //noinspection ArraysAsListWithZeroOrOneArgument
         return Arrays.asList(getWandforcyDescriptionLine(), getVisStoredDescriptionLine(vis.getData()));
-    }
+    }*/ //TODO: readd
 
 
     protected List<ItemStack> combineWith(T other) {
@@ -152,10 +90,6 @@ public abstract class WandItemStackBase<T extends WandItemStackBase<T>> extends 
         return result;
     }
 
-    @Override
-    public final boolean canCombineAnvil(ItemStack itemStack, HumanEntity human) {
-        return itemStack instanceof OilBukkitItemStack && ((OilBukkitItemStack) itemStack).getOilItemStack() instanceof WandItemStackBase && checkClass((WandItemStackBase) ((OilBukkitItemStack) itemStack).getOilItemStack());
-    }
 
     protected boolean checkClass(WandItemStackBase itemStack) {
         return itemStack.getClass()==WandItemStackBase.class;
@@ -202,6 +136,11 @@ public abstract class WandItemStackBase<T extends WandItemStackBase<T>> extends 
         return useVis(false, amount);
     }
 
+
+    @Override
+    public String getCurrentDisplayName() {
+        return isRenamed()?getRename():getItem().getDisplayName();
+    }
 
     private long lastEmptyNodeMessage = 0;
     protected final void onNoWandforcyUse(Player player) {

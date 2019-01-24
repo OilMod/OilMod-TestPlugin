@@ -12,11 +12,6 @@ import org.bukkit.event.block.Action;
  */
 public class VisContainerItem extends OilItem {
     public VisContainerItem(OilMod mod) {
-        super(mod.createKey("vis_container"), itemType, Material.END_CRYSTAL, 0, "Vis Container");
-    }
-
-    @Override
-    public boolean onUse(OilItemStack itemStack, Player player, Action action) {
-        return true;
+        super(mod.createKey("vis_container"), Material.END_CRYSTAL, "Vis Container");
     }
 }

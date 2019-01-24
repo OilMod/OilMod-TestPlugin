@@ -61,4 +61,5 @@ public class DamageBeamWandforcyItemStack extends WeaponBeamWandforcyItemStackBa
     protected int getAfterHitCooldownMs() {
         return 1300;
     }
+
 }

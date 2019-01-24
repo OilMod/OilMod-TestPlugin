@@ -17,14 +17,13 @@ public class ReplaceWandforcyItem extends WandforcyItemBase<ReplaceWandforcyItem
         return new ReplaceWandforcyItemStack(nmsItemStack, this);
     }
 
-
     @Override
-    public int getEnchantSelectModifier() {
+    public int getItemEnchantability() {
         return 12;
     }
 
     @Override
-    public boolean canEnchant(Enchantment enchantment) {
+    public boolean canEnchantSpecial(Enchantment enchantment, boolean anvil) {
         return Enchantment.DURABILITY.equals(enchantment)||Enchantment.DIG_SPEED.equals(enchantment)||Enchantment.SILK_TOUCH.equals(enchantment);
     }
 }

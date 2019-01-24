@@ -18,12 +18,12 @@ public class ArrowWandforcyItem extends WandforcyItemBase<ArrowWandforcyItemStac
     }
 
     @Override
-    public int getEnchantSelectModifier() {
+    public int getItemEnchantability() {
         return 11;
     }
 
     @Override
-    public boolean canEnchant(Enchantment enchantment) {
+    public boolean canEnchantSpecial(Enchantment enchantment, boolean anvil) {
         return Enchantment.ARROW_DAMAGE.equals(enchantment)||Enchantment.ARROW_KNOCKBACK.equals(enchantment)||Enchantment.ARROW_FIRE.equals(enchantment)||Enchantment.DURABILITY.equals(enchantment)||Enchantment.DIG_SPEED.equals(enchantment);
     }
 }

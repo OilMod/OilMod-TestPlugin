@@ -40,23 +40,6 @@ public abstract class WandforcyItemStackBase<T extends WandforcyItemStackBase<T>
     public void onWandUseOnBlock(Wand wand, Player player, Action action, Block blockClicked, BlockFace blockFace) {
     }
 
-    @Override
-    public boolean onUse(Player player, Action action) {
-        for (int i = 0; i < 9; i++) {
-            ItemStack itemStack = player.getInventory().getItem(i);
-            if (itemStack instanceof OilBukkitItemStack && ((OilBukkitItemStack) itemStack).getOilItemStack() instanceof Wand) {
-                Wand wand = (Wand) ((OilBukkitItemStack) itemStack).getOilItemStack();
-                if (wand.getWandforcy()==null) {
-                    wand.setWandforcy(this);
-                    player.getInventory().remove(asBukkitItemStack());
-                    player.sendMessage("Inserted " + getCurrentDisplayName() + " into §a" + wand.getCurrentDisplayName());
-                    return true;
-                }
-            }
-        }
-        player.sendMessage("Cannot find empty wand in hotbar.");
-        return true;
-    }
 
 
     @Override
@@ -64,26 +47,7 @@ public abstract class WandforcyItemStackBase<T extends WandforcyItemStackBase<T>
         return asBukkitItemStack();
     }
 
-    @Override
-    public final boolean canCombineAnvil(ItemStack itemStack, HumanEntity human) {
-        return itemStack instanceof OilBukkitItemStack && ((OilBukkitItemStack) itemStack).getOilItemStack() instanceof WandforcyItemStackBase && checkClass((WandforcyItemStackBase) ((OilBukkitItemStack) itemStack).getOilItemStack());
-    }
-
     protected abstract boolean checkClass(WandforcyItemStackBase itemStack);
-
-    @Override
-    public final void combineAnvil(ItemStack itemStack, HumanEntity human) {
-        //noinspection unchecked
-        T other = (T) ((OilBukkitItemStack) itemStack).getOilItemStack();
-        List<ItemStack> drops= combineWith(other);
-        dropAll(drops, human);
-    }
-
-    @Override
-    public void prepareCombineAnvil(ItemStack itemStack, HumanEntity human) {
-        //noinspection unchecked
-        T other = (T) ((OilBukkitItemStack) itemStack).getOilItemStack();
-    }
 
 
     protected List<ItemStack> combineWith(T other) {
@@ -98,5 +62,10 @@ public abstract class WandforcyItemStackBase<T extends WandforcyItemStackBase<T>
     @Override
     public String getSpellName() {
         return getItem().getWandforcyName();
+    }
+
+    @Override
+    public String getCurrentDisplayName() {
+        return isRenamed()?getRename():getItem().getDisplayName();
     }
 }

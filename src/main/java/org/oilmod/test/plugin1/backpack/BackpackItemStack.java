@@ -24,20 +24,14 @@ public class BackpackItemStack extends OilItemStack {
         inventory = InventoryFactory.getInstance().createBasicInventory("inv", this, 9*item.getRows(), "Backpack", PortableInventoryFilter.INSTANCE, true); //Creates inventory attached to
     }
 
-    @Override
+    /*@Override
     protected List<String> createDescription() {
         return Arrays.asList(getItem().getDisplayName()+".", "", "This backpack has §6" + getRows() + " " + (getRows()==1?"row":"rows")+"§7.", "Can store up to §6" + (getRows()*9) + "§7 stacks of items!"); //Creates item description if needed
-    }
+    }*/ //TODO readd this currently no api
 
     @Override
     public BackpackItem getItem() {
         return (BackpackItem) super.getItem();
-    }
-
-    @Override
-    public boolean onUse(Player player, Action action) {
-        player.openInventory(inventory.getBukkitInventory()); //onUse event - opens inventory
-        return true; //suppress normal minecraft actions
     }
 
     public int getRows() {

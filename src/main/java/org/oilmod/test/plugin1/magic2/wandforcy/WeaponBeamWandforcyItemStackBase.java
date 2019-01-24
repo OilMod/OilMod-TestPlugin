@@ -115,4 +115,6 @@ public abstract class WeaponBeamWandforcyItemStackBase<T extends WeaponBeamWandf
     public UIPanel getUIPanel() {
         return null;
     }
+
+
 }

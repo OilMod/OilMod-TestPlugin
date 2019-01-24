@@ -23,7 +23,7 @@ public class BasicWandItemStack extends WandItemStackBase<BasicWandItemStack>{
 
     public void setWandforcy(ItemStack itemStack) {
         if (itemStack==null || getWandforcyFilter().allowed(itemStack)) {
-            getItemDescription().setLine(0, getWandforcyDescriptionLine(), true);
+            //getItemDescription().setLine(0, getWandforcyDescriptionLine(), true); //TODO: readd
             wandforcyDataTag.setItemStack(itemStack);
         }
     }
