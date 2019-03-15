@@ -63,7 +63,7 @@ public class BackpackItem extends OilItem implements IUnique {
             if (backpack.isRenamed()) {
                 newBackpack.setRename(backpack.getRename());//If old backpack was renamed. rename new backpack as well
             }
-            return newBackpack.getNmsItemStack().asBukkitItemStack();
+            return newBackpack.getNmsItemStack().asItemStackRep();
         }
 
         @Override

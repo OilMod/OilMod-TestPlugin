@@ -138,7 +138,7 @@ public class ReplaceWandforcyItemStack extends WandforcyItemStackBase<ReplaceWan
         newState.setType(newBlock.getType());
         newState.setRawData((byte)newBlock.getDurability());
         newState.update(true, false);
-        if (!OilUtil.canPlace(player, block, oldState, block.getRelative(from), getNmsItemStack().asBukkitItemStack())) {
+        if (!OilUtil.canPlace(player, block, oldState, block.getRelative(from), getNmsItemStack().asItemStackRep())) {
             oldState.update(true, false);
             return false;
         }

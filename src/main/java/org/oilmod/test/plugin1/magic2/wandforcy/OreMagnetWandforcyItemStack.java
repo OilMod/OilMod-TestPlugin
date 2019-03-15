@@ -17,7 +17,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -124,7 +123,7 @@ public class OreMagnetWandforcyItemStack extends BeamWandforcyItemStackBase<OreM
 
         if (lastSwitched != null) {
             setToState(lastSwitched, oreBlockState);
-            boolean allowed = OilUtil.canMultiPlace(player, blockStates, oreBlockState.getBlock(), getNmsItemStack().asBukkitItemStack());
+            boolean allowed = OilUtil.canMultiPlace(player, blockStates, oreBlockState.getBlock(), getNmsItemStack().asItemStackRep());
             if (allowed) {
                 if (TestPlugin.rnd.nextInt(2 + getEnchantmentLevel(Enchantment.DURABILITY)) < 2) {
                     wand.useVis(4);
