@@ -11,6 +11,7 @@ import org.oilmod.api.items.OilItem;
 import org.oilmod.api.items.OilItemStack;
 import org.bukkit.Material;
 import org.oilmod.api.items.type.IUnique;
+import org.oilmod.api.rep.providers.minecraft.MinecraftItem;
 import org.oilmod.api.util.InteractionResult;
 
 /**
@@ -18,7 +19,7 @@ import org.oilmod.api.util.InteractionResult;
  */
 public class FurnacePowderItem extends OilItem implements IUnique {
     public FurnacePowderItem(OilMod mod) {
-        super(mod.createKey("furnace_powder"), Material.BLAZE_POWDER, "Furnace Powder");
+        super(mod.createKey("furnace_powder"), MinecraftItem.BLAZE_POWDER, "Furnace Powder");
     }
 
     @Override

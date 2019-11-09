@@ -8,6 +8,11 @@ import org.oilmod.api.items.crafting.OilCraftingRecipe;
 import org.oilmod.api.items.crafting.OilItemCraftingResult;
 import org.oilmod.api.items.crafting.VanillaEnchantmentIngredient;
 import org.oilmod.api.items.crafting.VanillaPotionIngredient;
+import org.oilmod.api.rep.providers.BlockStateProvider;
+import org.oilmod.api.rep.providers.ItemStackStateProvider;
+import org.oilmod.api.rep.providers.ItemStateProvider;
+import org.oilmod.api.rep.providers.minecraft.MinecraftBlock;
+import org.oilmod.api.rep.providers.minecraft.MinecraftItem;
 import org.oilmod.test.plugin1.magic2.wandforcy.ArrowWandforcyItem;
 import org.oilmod.test.plugin1.magic2.wandforcy.DamageBeamWandforcyItem;
 import org.oilmod.test.plugin1.magic2.wandforcy.FlameBeamWandforcyItem;
@@ -16,10 +21,12 @@ import org.oilmod.test.plugin1.magic2.wandforcy.LifestealBeamWandforcyItem;
 import org.oilmod.test.plugin1.magic2.wandforcy.OreMagnetWandforcyItem;
 import org.oilmod.test.plugin1.magic2.wandforcy.ReplaceWandforcyItem;
 import org.oilmod.test.plugin1.magic2.wandforcy.SniperWandforcyItem;
-import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionType;
+
+import static org.oilmod.api.rep.providers.minecraft.MinecraftItem.*;
+import static org.oilmod.api.rep.providers.minecraft.MinecraftBlock.*;
 
 /**
  * Created by sirati97 on 02.07.2016 for OilMod-TestPlugin.
@@ -57,70 +64,71 @@ public final class MagicUtil {
         OilCraftingRecipe recipe;
 
 
-        ItemStack lapislazuli = new ItemStack(Material.INK_SACK, 1, (short) 4);
-        ItemStack witherskull = new ItemStack(Material.SKULL_ITEM, 1, (short) 1);
+        ItemStateProvider lapislazuli = LAPIS_LAZULI;
+
+        BlockStateProvider witherskull = WITHER_SKELETON_SKULL;
         VanillaPotionIngredient poisonLongNotNormal = new VanillaPotionIngredient(PotionType.POISON, VanillaPotionIngredient.PotionUpgraded.NotUpgraded, VanillaPotionIngredient.PotionExtended.Extended, VanillaPotionIngredient.PotionBottleType.Throwable, VanillaPotionIngredient.PotionBottleType.Lingering);
         VanillaPotionIngredient regenLongNotNormal = new VanillaPotionIngredient(PotionType.REGEN, VanillaPotionIngredient.PotionUpgraded.NotUpgraded, VanillaPotionIngredient.PotionExtended.Extended, VanillaPotionIngredient.PotionBottleType.Throwable, VanillaPotionIngredient.PotionBottleType.Lingering);
-        InterchangeableCraftingIngredient allGoldTools = new InterchangeableCraftingIngredient(noId(Material.GOLD_SWORD), noId(Material.GOLD_SPADE), noId(Material.GOLD_PICKAXE), noId(Material.GOLD_AXE));
+        InterchangeableCraftingIngredient allGoldTools = new InterchangeableCraftingIngredient(noId(GOLDEN_SWORD), noId(GOLDEN_SHOVEL), noId(GOLDEN_PICKAXE), noId(GOLDEN_AXE));
 
 
         //###VisContainerItem###
         recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_vis_container"), 3,3, new OilItemCraftingResult(visContainerItem, 2),
-                Material.IRON_INGOT,  Material.ENDER_PEARL, Material.IRON_INGOT,
-                Material.LAPIS_BLOCK, Material.LAPIS_BLOCK, Material.LAPIS_BLOCK,
-                Material.IRON_INGOT,  Material.GOLD_INGOT,  Material.IRON_INGOT);
+                IRON_INGOT,  ENDER_PEARL, IRON_INGOT,
+                LAPIS_BLOCK, LAPIS_BLOCK, LAPIS_BLOCK,
+                IRON_INGOT,  GOLD_INGOT,  IRON_INGOT);
         ItemCraftingFactory.registerGlobal(recipe);
 
 
         //###BasicWand###
 
         recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wand_basic"), 3,3, new OilItemCraftingResult(basicBasicWandItem, 1),
-                null,                   Material.BLAZE_POWDER, Material.DIAMOND,
-                VisContainerItem.class, Material.STICK,        Material.BLAZE_POWDER,
-                Material.IRON_BLOCK,    visContainerItem,      null);
+                null,                   BLAZE_POWDER, DIAMOND,
+                VisContainerItem.class, STICK,        BLAZE_POWDER,
+                MinecraftBlock.IRON_BLOCK,    visContainerItem,      null);
         ItemCraftingFactory.registerGlobal(recipe);
 
 
         //###BlankWandforcyItem###
         recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_blank"), 3,3, new OilItemCraftingResult(blankWandforcyItem, 1),
-                Material.REDSTONE,   Material.IRON_INGOT,  Material.REDSTONE,
-                Material.IRON_INGOT, noId(Material.STONE), Material.IRON_INGOT,
-                lapislazuli,         Material.IRON_INGOT,  lapislazuli);
+                REDSTONE,   IRON_INGOT,  REDSTONE,
+                IRON_INGOT, noId(STONE), IRON_INGOT,
+                lapislazuli,         IRON_INGOT,  lapislazuli);
         ItemCraftingFactory.registerGlobal(recipe);
 
         //###ArrowWandforcyItem###
         recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_arrow"), 3,3, new OilItemCraftingResult(arrowWandforcyItem, 1),
                 lapislazuli,         new VanillaEnchantmentIngredient(Enchantment.ARROW_INFINITE, 1), lapislazuli,
-                Material.IRON_INGOT, blankWandforcyItem,                                                        Material.IRON_INGOT,
-                Material.ARROW,      Material.ARROW,                                                            Material.ARROW);
+                IRON_INGOT, blankWandforcyItem,                                                        IRON_INGOT,
+                ARROW,      ARROW,                                                            ARROW);
         ItemCraftingFactory.registerGlobal(recipe);
 
 
         //###ReplaceWandforcyItem###
         recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_replace"), 3,3, new OilItemCraftingResult(replaceWandforcyItem, 1),
-                lapislazuli,  Material.DISPENSER,             lapislazuli,
+                lapislazuli,  DISPENSER,             lapislazuli,
                 allGoldTools, blankWandforcyItem,             allGoldTools,
-                allGoldTools, noId(Material.DIAMOND_PICKAXE), allGoldTools);
+                allGoldTools, noId(DIAMOND_PICKAXE), allGoldTools);
         ItemCraftingFactory.registerGlobal(recipe);
 
 
         //###OreMagnetWandforcyItem###
         recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_ore_magnet"), 3,3, new OilItemCraftingResult(oreMagnetWandforcyItem, 1),
-                Material.REDSTONE_BLOCK, Material.DIAMOND,    Material.REDSTONE_BLOCK,
-                Material.IRON_BLOCK,     blankWandforcyItem,  Material.IRON_BLOCK,
-                Material.IRON_BLOCK,     Material.IRON_BLOCK, Material.IRON_BLOCK);
+                REDSTONE_BLOCK, DIAMOND,    REDSTONE_BLOCK,
+                IRON_BLOCK,     blankWandforcyItem,  IRON_BLOCK,
+                IRON_BLOCK,     IRON_BLOCK, IRON_BLOCK);
         ItemCraftingFactory.registerGlobal(recipe);
 
 
         //###FlameBeamWandforcyItem###
         recipe = ItemCraftingFactory.createShapelessRecipe(m.createKey("crafting_wandforcy_flame_beam"), new OilItemCraftingResult(flameBeamWandforcyItem, 1),
-                Material.FIREBALL, blankWandforcyItem, Material.FIREBALL);
+                FIREWORK_STAR, blankWandforcyItem, FIREWORK_STAR);
         ItemCraftingFactory.registerGlobal(recipe);
 
 
         //###LifestealBeamWandforcyItem###
         recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_lifesteal_beam"), 3,3, new OilItemCraftingResult(lifestealBeamWandforcyItem, 1),
-                Material.DIAMOND,    witherskull,        Material.DIAMOND,
+                DIAMOND,    witherskull,        DIAMOND,
                 poisonLongNotNormal, blankWandforcyItem, regenLongNotNormal,
                 lapislazuli,         lapislazuli,        lapislazuli);
         ItemCraftingFactory.registerGlobal(recipe);
@@ -128,25 +136,25 @@ public final class MagicUtil {
 
         //###SniperWandforcyItem###
         recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_sniper"), 3,3, new OilItemCraftingResult(sniperWandforcyItem, 1),
-                Material.REDSTONE,   new VanillaEnchantmentIngredient(Enchantment.ARROW_DAMAGE, 5), Material.REDSTONE,
-                Material.IRON_INGOT, blankWandforcyItem,                                                      Material.IRON_INGOT,
-                Material.IRON_INGOT, Material.DIAMOND,                                                        Material.IRON_INGOT);
+                REDSTONE,   new VanillaEnchantmentIngredient(Enchantment.ARROW_DAMAGE, 5), REDSTONE,
+                IRON_INGOT, blankWandforcyItem,                                                      IRON_INGOT,
+                IRON_INGOT, DIAMOND,                                                        IRON_INGOT);
         ItemCraftingFactory.registerGlobal(recipe);
 
 
         //###DamageBeamWandforcyItem###
         recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_damage_beam"), 3,3, new OilItemCraftingResult(damageBeamWandforcyItem, 1),
-                null,              noId(Material.IRON_SWORD), null,
-                Material.REDSTONE, blankWandforcyItem,        Material.REDSTONE,
+                null,              noId(IRON_SWORD), null,
+                REDSTONE, blankWandforcyItem,        REDSTONE,
                 lapislazuli,       lapislazuli,               lapislazuli);
         ItemCraftingFactory.registerGlobal(recipe);
 
 
         //###ItemMagnetWandforcyItem###
         recipe = ItemCraftingFactory.createShapedRecipe(m.createKey("crafting_wandforcy_item_magnet"), 3,3, new OilItemCraftingResult(itemMagnetWandforcyItem, 1),
-                Material.REDSTONE  , Material.ENDER_PEARL, Material.REDSTONE,
-                Material.IRON_INGOT, blankWandforcyItem,   Material.IRON_INGOT,
-                Material.IRON_INGOT, Material.IRON_INGOT,  Material.IRON_INGOT);
+                REDSTONE  , ENDER_PEARL, REDSTONE,
+                IRON_INGOT, blankWandforcyItem,   IRON_INGOT,
+                IRON_INGOT, IRON_INGOT,  IRON_INGOT);
         ItemCraftingFactory.registerGlobal(recipe);
 
 
@@ -163,7 +171,7 @@ public final class MagicUtil {
         }
     }
 
-    private static ItemStack noId(Material material) {
-        return new ItemStack(material, 1, (short) 0);
+    private static ItemStack noId(MinecraftItem.MinecraftItem. {
+        return new ItemStack(MinecraftItem. 1, (short) 0);
     }
 }

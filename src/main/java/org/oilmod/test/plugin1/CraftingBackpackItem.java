@@ -9,6 +9,7 @@ import org.oilmod.api.items.OilItem;
 import org.oilmod.api.items.OilItemStack;
 import org.bukkit.Material;
 import org.oilmod.api.items.type.IUnique;
+import org.oilmod.api.rep.providers.minecraft.MinecraftItem;
 import org.oilmod.api.util.InteractionResult;
 
 /**
@@ -16,7 +17,7 @@ import org.oilmod.api.util.InteractionResult;
  */
 public class CraftingBackpackItem extends OilItem implements IUnique {
     public CraftingBackpackItem(OilMod mod) {
-        super(mod.createKey("backpack_crafting"), Material.LEATHER, "Crafting Backpack");
+        super(mod.createKey("backpack_crafting"), MinecraftItem.LEATHER, "Crafting Backpack");
     }
 
     @Override
